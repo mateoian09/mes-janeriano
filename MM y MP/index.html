@@ -1,0 +1,245 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mes Janeriano</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-pM8iHX8l1lYfCOuKa7DuceD4dbMfxvXthGE6SM1kIBRc9K9DToyTsl4yefi01R0nzVDx+J70N2J6TCcYCa/iYg=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <nav class="navbar glass">
+    <div class="container nav-container">
+      <a href="#hero" class="logo">MES JANERIANO</a>
+      <ul class="nav-links">
+        <li><a href="#contador-puntos">Ranking</a></li>
+        <li><a href="#desafio-del-dia">Desafío del Día</a></li>
+        <li><a href="#ultimos-participantes">Participantes</a></li>
+        <li><a href="#calendario">Calendario</a></li>
+        <li><a href="#valor-del-dia">Valor</a></li>
+        <li><a href="#galeria">Galería</a></li>
+        <li><a href="#noticias">Noticias</a></li>
+      </ul>
+      <button aria-label="Menu" id="menuToggle" class="menu-toggle">
+        <i class="fa fa-bars"></i>
+      </button>
+      <button id="musicToggle" class="music-toggle" aria-label="Activar música">
+        <i class="fa-solid fa-volume-xmark"></i>
+        <span>Música</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Música de fondo: Gregorian chant / instrumental católico libre de derechos -->
+  <audio id="bgMusic" loop preload="none">
+    <source src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Himno_a_la_alegria.ogg" type="audio/ogg" />
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg" />
+  </audio>
+
+  <header id="hero" class="hero-section">
+    <div class="hero-bg">
+      <div class="overlay"></div>
+      <video
+        class="hero-video"
+        autoplay
+        muted
+        loop
+        playsinline
+        src="https://cdn.videvo.net/videvo_files/video/free/2019-05/small_watermarked/190503_01_DD_SchoolSports_01_02_preview.webm"
+      ></video>
+    </div>
+    <div class="hero-content container">
+      <h1>MES JANERIANO</h1>
+      <p>Competir, aprender y compartir</p>
+    </div>
+  </header>
+
+  <main>
+    <!-- RANKING / CONTADOR DE PUNTOS -->
+    <section id="contador-puntos" class="puntos-section container glass">
+      <h2>Contador de Puntos</h2>
+      <div class="puntos-cards">
+        <div class="puntos-card cervera">
+          <div class="team-header">
+            <i class="fa-solid fa-shield-halved fa-2x"></i>
+            <h3>CERVERA</h3>
+          </div>
+          <div class="points-number" aria-label="Puntos de Cervera">0</div>
+          <div class="points-bar-container" aria-hidden="true">
+            <div class="points-bar cervera-bar" style="width: 0%"></div>
+          </div>
+        </div>
+
+        <div class="puntos-card talar">
+          <div class="team-header">
+            <i class="fa-solid fa-fire fa-2x"></i>
+            <h3>TALAR</h3>
+          </div>
+          <div class="points-number" aria-label="Puntos de Talar">0</div>
+          <div class="points-bar-container" aria-hidden="true">
+            <div class="points-bar talar-bar" style="width: 0%"></div>
+          </div>
+        </div>
+
+        <div class="puntos-card valdora">
+          <div class="team-header">
+            <i class="fa-solid fa-leaf fa-2x"></i>
+            <h3>VALDORA</h3>
+          </div>
+          <div class="points-number" aria-label="Puntos de Valdora">0</div>
+          <div class="points-bar-container" aria-hidden="true">
+            <div class="points-bar valdora-bar" style="width: 0%"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DESAFÍO JANERIANO DEL DÍA -->
+    <section id="desafio-del-dia" class="desafio-section container glass">
+      <h2>DESAFÍO JANERIANO DEL DÍA</h2>
+      <p id="desafio-dia-numero" class="desafio-dia-label">Día 1</p>
+      <div class="desafio-content">
+        <p class="pregunta">Cargando pregunta...</p>
+        <form id="desafioForm" autocomplete="off" novalidate>
+          <div class="form-group">
+            <label for="nombre">Nombre completo</label>
+            <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre" aria-required="true" autocomplete="name" />
+          </div>
+          <div class="form-group">
+            <label for="curso">Curso</label>
+            <input type="text" id="curso" name="curso" required placeholder="Ej: 2do Año" aria-required="true" />
+          </div>
+          <div class="form-group">
+            <label for="division">División</label>
+            <input type="text" id="division" name="division" required placeholder="Ej: B" aria-required="true" maxlength="1" />
+          </div>
+          <div class="form-group">
+            <label for="equipo">Equipo</label>
+            <select id="equipo" name="equipo" required aria-required="true">
+              <option value="">Seleccioná tu equipo</option>
+              <option value="cervera">Cervera</option>
+              <option value="talar">Talar</option>
+              <option value="valdora">Valdora</option>
+            </select>
+          </div>
+          <fieldset class="form-group respuestas-group" aria-required="true">
+            <legend>Respuesta</legend>
+          </fieldset>
+          <button type="submit" class="btn btn-primary">Participar</button>
+        </form>
+        <div id="desafioFeedback" class="desafio-feedback" role="alert" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- ÚLTIMOS PARTICIPANTES -->
+    <section id="ultimos-participantes" class="participantes-section container glass">
+      <h2>Últimos Participantes</h2>
+      <div id="participantes-lista" class="participantes-lista">
+        <p class="no-participantes">Aún no hay participantes registrados.</p>
+      </div>
+    </section>
+
+    <!-- CALENDARIO -->
+    <section id="calendario" class="calendario-section container glass">
+      <h2>Calendario de Eventos</h2>
+      <ul class="calendario-list">
+        <li>
+          <span class="calendario-date">5 Julio</span>
+          <span class="calendario-event"><i class="fa-solid fa-futbol"></i> Fútbol</span>
+        </li>
+        <li>
+          <span class="calendario-date">8 Julio</span>
+          <span class="calendario-event"><i class="fa-solid fa-volleyball"></i> Vóley</span>
+        </li>
+        <li>
+          <span class="calendario-date">12 Julio</span>
+          <span class="calendario-event"><i class="fa-solid fa-hand-sparkles"></i> Handball</span>
+        </li>
+        <li>
+          <span class="calendario-date">15 Julio</span>
+          <span class="calendario-event"><i class="fa-solid fa-question"></i> Trivia</span>
+        </li>
+        <li>
+          <span class="calendario-date">20 Julio</span>
+          <span class="calendario-event"><i class="fa-solid fa-recycle"></i> Reciclaje</span>
+        </li>
+        <li>
+          <span class="calendario-date">25 Julio</span>
+          <span class="calendario-event"><i class="fa-solid fa-paint-roller"></i> Decoración de Aulas</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- VALOR DEL DÍA -->
+    <section id="valor-del-dia" class="valor-section container glass">
+      <h2>Valor del Día</h2>
+      <div class="valor-content">
+        <span class="valor-name">Compañerismo</span>
+        <p class="valor-frase">
+          "Juntos somos más fuertes. Apoyar y respetar a los demás crea un equipo invencible."
+        </p>
+      </div>
+    </section>
+
+    <!-- GALERÍA -->
+    <section id="galeria" class="galeria-section container glass">
+      <h2>Galería</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item"><img src="https://via.placeholder.com/250?text=Evento+1" alt="Evento 1" /></div>
+        <div class="gallery-item"><img src="https://via.placeholder.com/250?text=Evento+2" alt="Evento 2" /></div>
+        <div class="gallery-item"><img src="https://via.placeholder.com/250?text=Evento+3" alt="Evento 3" /></div>
+        <div class="gallery-item"><img src="https://via.placeholder.com/250?text=Evento+4" alt="Evento 4" /></div>
+        <div class="gallery-item"><img src="https://via.placeholder.com/250?text=Evento+5" alt="Evento 5" /></div>
+        <div class="gallery-item"><img src="https://via.placeholder.com/250?text=Evento+6" alt="Evento 6" /></div>
+      </div>
+    </section>
+
+    <!-- NOTICIAS -->
+    <section id="noticias" class="noticias-section container glass">
+      <h2>Noticias Janerianas</h2>
+      <div class="noticias-cards">
+        <article class="noticia-card">
+          <h3>Inicio de competencias deportivas</h3>
+          <p>Las actividades deportivas comenzaron con gran entusiasmo. Cervera dominó el fútbol inicial.</p>
+          <time datetime="2024-07-01">1 Julio 2024</time>
+        </article>
+        <article class="noticia-card">
+          <h3>Trivia educativa: resultados y ganadores</h3>
+          <p>Valdora se destacó en la trivia del día 8, acumulando puntos valiosos para el ranking.</p>
+          <time datetime="2024-07-08">8 Julio 2024</time>
+        </article>
+        <article class="noticia-card">
+          <h3>Jornada de reciclaje premiada</h3>
+          <p>El compromiso con el medio ambiente estuvo presente: Talar lideró la jornada.</p>
+          <time datetime="2024-07-20">20 Julio 2024</time>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer glass">
+    <div class="container footer-container">
+      <p>© 2026 Instituto Secundario Católico - Mes Janeriano.</p>
+      <p class="footer-dev">Desarrollado por <strong>Mateo Perez</strong> y <strong>Martina Morales</strong></p>
+      <div class="footer-icons">
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook fa-lg"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram fa-lg"></i></a>
+        <a href="#" aria-label="Twitter"><i class="fab fa-twitter fa-lg"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
