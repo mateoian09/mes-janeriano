@@ -593,12 +593,12 @@ input[type="radio"]:checked + label {
 }
 
 /* =============================================
-   CALENDARIO
+   CALENDARIO — rediseñado
    ============================================= */
 .calendario-section h2 {
   font-weight: 700;
   font-size: clamp(1.6rem, 3vw, 2.5rem);
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   color: var(--text-light);
   text-align: center;
   text-shadow: 0 0 8px var(--green-intense);
@@ -609,47 +609,97 @@ input[type="radio"]:checked + label {
   padding: 0;
   margin: 0;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem;
+  flex-direction: column;
+  gap: 0.75rem;
 }
 
 .calendario-list li {
-  background: #222;
-  border-radius: 1rem;
-  padding: 0.9rem 1.2rem;
-  min-width: 160px;
-  max-width: 100%;
+  background: #1c1c1c;
+  border-radius: 0.75rem;
+  padding: 0.85rem 1.2rem;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  gap: 0.5rem;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+  gap: 1rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+  border-left: 3px solid var(--green-intense);
   cursor: default;
-  transition: box-shadow 0.3s ease;
+  transition: box-shadow 0.3s ease, transform 0.2s ease, border-color 0.3s ease;
   user-select: none;
-  flex: 1 1 160px;
+  width: 100%;
 }
 
 .calendario-list li:hover {
-  box-shadow: 0 0 22px var(--accent-glow-green);
+  box-shadow: 0 4px 20px rgba(0, 122, 51, 0.35);
+  transform: translateX(4px);
+  border-color: var(--accent-glow-green);
 }
 
-.calendario-date {
+/* Fecha badge */
+.cal-date-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #005a23, #2ed97a22);
+  border: 1px solid rgba(46, 217, 122, 0.25);
+  border-radius: 0.6rem;
+  min-width: 52px;
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+}
+
+.cal-date-badge.cal-deadline {
+  background: linear-gradient(135deg, #7a0010, #ff294f22);
+  border-color: rgba(255, 41, 79, 0.3);
+}
+
+.cal-day {
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: var(--accent-glow-green);
+  line-height: 1;
+}
+
+.cal-date-badge.cal-deadline .cal-day {
+  color: var(--accent-glow-red);
+}
+
+.cal-month {
+  font-size: 0.6rem;
   font-weight: 700;
-  font-size: 1rem;
-  color: var(--text-light);
-  white-space: nowrap;
+  letter-spacing: 0.1em;
+  color: #aaa;
+  text-transform: uppercase;
 }
 
-.calendario-event {
-  font-weight: 600;
-  font-size: 0.95rem;
-  color: var(--green-intense);
+/* Evento info */
+.cal-event-info {
   display: flex;
   align-items: center;
-  gap: 0.4rem;
-  text-align: right;
+  gap: 0.75rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.cal-icon {
+  font-size: 1.15rem;
+  color: var(--green-intense);
+  flex-shrink: 0;
+  width: 1.4rem;
+  text-align: center;
+}
+
+.cal-deadline-icon {
+  color: var(--accent-glow-red);
+}
+
+.cal-event-name {
+  font-weight: 600;
+  font-size: clamp(0.88rem, 2vw, 0.98rem);
+  color: var(--text-light);
+  line-height: 1.35;
+  word-break: break-word;
 }
 
 /* =============================================
@@ -764,17 +814,57 @@ input[type="radio"]:checked + label {
   box-shadow: 0 0 28px var(--accent-glow-green);
 }
 
+/* Featured single news card */
+.noticia-card--featured {
+  flex: 1 1 100%;
+  max-width: 720px;
+  margin-inline: auto;
+  background: linear-gradient(135deg, #1a1a2e 0%, #222 60%);
+  border: 1px solid rgba(0, 122, 51, 0.3);
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.noticia-card--featured::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--green-intense), var(--accent-glow-green));
+  border-radius: 4px 0 0 4px;
+}
+
+.noticia-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: rgba(0, 122, 51, 0.25);
+  color: var(--accent-glow-green);
+  border: 1px solid rgba(47, 237, 123, 0.3);
+  border-radius: 2rem;
+  padding: 0.25rem 0.75rem;
+  align-self: flex-start;
+}
+
 .noticia-card h3 {
   margin: 0;
-  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  font-size: clamp(1.1rem, 3vw, 1.5rem);
   font-weight: 700;
   color: var(--text-light);
+  line-height: 1.3;
 }
 
 .noticia-card p {
-  font-size: 0.95rem;
+  font-size: clamp(0.9rem, 2vw, 1rem);
   color: #ccc;
-  line-height: 1.4;
+  line-height: 1.6;
   flex-grow: 1;
 }
 
@@ -901,8 +991,22 @@ body::-webkit-scrollbar-thumb:hover { background-color: var(--red-intense); }
     padding: 0.85rem 1rem;
   }
 
-  .calendario-list { flex-direction: column; }
-  .calendario-list li { flex: 1 1 auto; min-width: unset; width: 100%; }
+  .calendario-list li {
+    padding: 0.75rem 0.9rem;
+    gap: 0.75rem;
+  }
+
+  .cal-date-badge {
+    min-width: 46px;
+    width: 46px;
+    height: 46px;
+  }
+
+  .cal-day { font-size: 1.1rem; }
+
+  .cal-event-name { font-size: 0.85rem; }
+
+  .noticia-card--featured { padding: 1.25rem; }
 
   .valor-name { font-size: 1.8rem; }
 
@@ -925,4 +1029,13 @@ body::-webkit-scrollbar-thumb:hover { background-color: var(--red-intense); }
   .hero-content h1 { font-size: 1.9rem; }
   .puntos-card { padding: 1rem; }
   .gallery-grid { grid-template-columns: 1fr 1fr; }
+
+  .cal-date-badge {
+    min-width: 42px;
+    width: 42px;
+    height: 42px;
+  }
+
+  .cal-day { font-size: 1rem; }
+  .cal-event-name { font-size: 0.82rem; }
 }
