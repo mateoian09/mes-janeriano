@@ -22,10 +22,9 @@
   <nav class="navbar glass">
     <div class="container nav-container">
       <a href="#hero" class="logo">MES JANERIANO</a>
-      <ul class="nav-links">
+      <ul class="nav-links" id="navLinks">
         <li><a href="#contador-puntos">Ranking</a></li>
         <li><a href="#desafio-del-dia">Desafío del Día</a></li>
-        <li><a href="#ultimos-participantes">Participantes</a></li>
         <li><a href="#calendario">Calendario</a></li>
         <li><a href="#valor-del-dia">Valor</a></li>
         <li><a href="#galeria">Galería</a></li>
@@ -34,30 +33,23 @@
       <button aria-label="Menu" id="menuToggle" class="menu-toggle">
         <i class="fa fa-bars"></i>
       </button>
-      <button id="musicToggle" class="music-toggle" aria-label="Activar música">
-        <i class="fa-solid fa-volume-xmark"></i>
-        <span>Música</span>
-      </button>
     </div>
   </nav>
 
-  <!-- Música de fondo: Gregorian chant / instrumental católico libre de derechos -->
+  <!-- Música de fondo: instrumental suave, ambiente escolar -->
   <audio id="bgMusic" loop preload="none">
-    <source src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Himno_a_la_alegria.ogg" type="audio/ogg" />
-    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg" />
+    <source src="https://upload.wikimedia.org/wikipedia/commons/5/58/Clair_de_lune_mp3.ogg" type="audio/ogg" />
+    <source src="https://upload.wikimedia.org/wikipedia/commons/9/9e/Clair_de_lune_suite_bergamasque.mp3" type="audio/mpeg" />
   </audio>
 
   <header id="hero" class="hero-section">
     <div class="hero-bg">
       <div class="overlay"></div>
-      <video
-        class="hero-video"
-        autoplay
-        muted
-        loop
-        playsinline
-        src="https://cdn.videvo.net/videvo_files/video/free/2019-05/small_watermarked/190503_01_DD_SchoolSports_01_02_preview.webm"
-      ></video>
+      <img
+        class="hero-img"
+        src="https://www.janer.esc.edu.ar/img/2026-PP.jpg"
+        alt="Mes Janeriano"
+      />
     </div>
     <div class="hero-content container">
       <h1>MES JANERIANO</h1>
@@ -84,9 +76,9 @@
         <div class="puntos-card talar">
           <div class="team-header">
             <i class="fa-solid fa-fire fa-2x"></i>
-            <h3>TALAR</h3>
+            <h3>TALARN</h3>
           </div>
-          <div class="points-number" aria-label="Puntos de Talar">0</div>
+          <div class="points-number" aria-label="Puntos de Talarn">0</div>
           <div class="points-bar-container" aria-hidden="true">
             <div class="points-bar talar-bar" style="width: 0%"></div>
           </div>
@@ -95,9 +87,9 @@
         <div class="puntos-card valdora">
           <div class="team-header">
             <i class="fa-solid fa-leaf fa-2x"></i>
-            <h3>VALDORA</h3>
+            <h3>VALL D'ORA</h3>
           </div>
-          <div class="points-number" aria-label="Puntos de Valdora">0</div>
+          <div class="points-number" aria-label="Puntos de Vall d'Ora">0</div>
           <div class="points-bar-container" aria-hidden="true">
             <div class="points-bar valdora-bar" style="width: 0%"></div>
           </div>
@@ -113,40 +105,31 @@
         <p class="pregunta">Cargando pregunta...</p>
         <form id="desafioForm" autocomplete="off" novalidate>
           <div class="form-group">
-            <label for="nombre">Nombre completo</label>
-            <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre" aria-required="true" autocomplete="name" />
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre" required placeholder="Ana Maria" aria-required="true" autocomplete="name" />
           </div>
           <div class="form-group">
-            <label for="curso">Curso</label>
-            <input type="text" id="curso" name="curso" required placeholder="Ej: 2do Año" aria-required="true" />
+            <label for="curso">Año</label>
+            <input type="text" id="curso" name="curso" required placeholder="Ej: 3er Año" aria-required="true" />
           </div>
           <div class="form-group">
             <label for="division">División</label>
-            <input type="text" id="division" name="division" required placeholder="Ej: B" aria-required="true" maxlength="1" />
-          </div>
-          <div class="form-group">
-            <label for="equipo">Equipo</label>
-            <select id="equipo" name="equipo" required aria-required="true">
-              <option value="">Seleccioná tu equipo</option>
-              <option value="cervera">Cervera</option>
-              <option value="talar">Talar</option>
-              <option value="valdora">Valdora</option>
+            <select id="division" name="division" required aria-required="true">
+              <option value="">Seleccioná tu división</option>
+              <option value="A">A — Cervera</option>
+              <option value="B">B — Talarn</option>
+              <option value="C">C — Vall d'Ora</option>
             </select>
           </div>
+          <!-- Equipo asignado automáticamente, oculto -->
+          <input type="hidden" id="equipo" name="equipo" value="" />
+          <div id="equipo-display" class="equipo-display" aria-live="polite"></div>
           <fieldset class="form-group respuestas-group" aria-required="true">
             <legend>Respuesta</legend>
           </fieldset>
           <button type="submit" class="btn btn-primary">Participar</button>
         </form>
         <div id="desafioFeedback" class="desafio-feedback" role="alert" aria-live="polite"></div>
-      </div>
-    </section>
-
-    <!-- ÚLTIMOS PARTICIPANTES -->
-    <section id="ultimos-participantes" class="participantes-section container glass">
-      <h2>Últimos Participantes</h2>
-      <div id="participantes-lista" class="participantes-lista">
-        <p class="no-participantes">Aún no hay participantes registrados.</p>
       </div>
     </section>
 
@@ -216,12 +199,12 @@
         </article>
         <article class="noticia-card">
           <h3>Trivia educativa: resultados y ganadores</h3>
-          <p>Valdora se destacó en la trivia del día 8, acumulando puntos valiosos para el ranking.</p>
+          <p>Vall d'Ora se destacó en la trivia del día 8, acumulando puntos valiosos para el ranking.</p>
           <time datetime="2024-07-08">8 Julio 2024</time>
         </article>
         <article class="noticia-card">
           <h3>Jornada de reciclaje premiada</h3>
-          <p>El compromiso con el medio ambiente estuvo presente: Talar lideró la jornada.</p>
+          <p>El compromiso con el medio ambiente estuvo presente: Talarn lideró la jornada.</p>
           <time datetime="2024-07-20">20 Julio 2024</time>
         </article>
       </div>
