@@ -257,7 +257,7 @@ function showFeedback(type, msg) {
 // =============================================
 function validateForm(nombre, curso, division, equipo, respuesta) {
   if (!nombre)    return { ok: false, msg: "Ingresá tu nombre." };
-  if (!curso)     return { ok: false, msg: "Ingresá tu año." };
+  if (!curso)     return { ok: false, msg: "Seleccioná tu año." };
   if (!division)  return { ok: false, msg: "Seleccioná tu división." };
   if (!equipo)    return { ok: false, msg: "La división seleccionada no tiene equipo asignado." };
   if (!respuesta) return { ok: false, msg: "Seleccioná una respuesta." };
