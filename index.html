@@ -36,7 +36,7 @@
     </div>
   </nav>
 
-  <!-- Música de fondo: instrumental suave, ambiente escolar -->
+  <!-- Música de fondo -->
   <audio id="bgMusic" loop preload="none">
     <source src="https://upload.wikimedia.org/wikipedia/commons/5/58/Clair_de_lune_mp3.ogg" type="audio/ogg" />
     <source src="https://upload.wikimedia.org/wikipedia/commons/9/9e/Clair_de_lune_suite_bergamasque.mp3" type="audio/mpeg" />
@@ -144,16 +144,20 @@
     <section id="calendario" class="calendario-section container glass">
       <h2>Calendario de Eventos</h2>
       <ul class="calendario-list">
-        <li>
-          <div class="cal-date-badge">
+
+        <!-- EVENTO REALIZADO -->
+        <li class="cal-item-realizado">
+          <div class="cal-date-badge cal-badge-realizado">
             <span class="cal-day">5</span>
             <span class="cal-month">JUN</span>
           </div>
           <div class="cal-event-info">
-            <i class="fa-solid fa-music cal-icon"></i>
+            <i class="fa-solid fa-circle-check cal-icon cal-icon-realizado"></i>
             <span class="cal-event-name">Bingo Musical y Musidesafíos</span>
           </div>
+          <span class="cal-badge-tag realizado-tag"><i class="fa-solid fa-check"></i> Realizado</span>
         </li>
+
         <li>
           <div class="cal-date-badge">
             <span class="cal-day">8</span>
@@ -164,16 +168,18 @@
             <span class="cal-event-name">Decoración de Aulas</span>
           </div>
         </li>
+
         <li>
           <div class="cal-date-badge">
             <span class="cal-day">11</span>
             <span class="cal-month">JUN</span>
           </div>
           <div class="cal-event-info">
-            <i class="fa-solid fa-totem-pole cal-icon"></i>
+            <i class="fa-solid fa-monument cal-icon"></i>
             <span class="cal-event-name">Presentación del Tótem de la Casa</span>
           </div>
         </li>
+
         <li>
           <div class="cal-date-badge">
             <span class="cal-day">11</span>
@@ -184,6 +190,7 @@
             <span class="cal-event-name">Desafíos de Salón</span>
           </div>
         </li>
+
         <li>
           <div class="cal-date-badge cal-deadline">
             <span class="cal-day">13</span>
@@ -194,6 +201,7 @@
             <span class="cal-event-name">Fecha límite: envío del video del lema</span>
           </div>
         </li>
+
         <li>
           <div class="cal-date-badge">
             <span class="cal-day">16</span>
@@ -204,6 +212,7 @@
             <span class="cal-event-name">Presentación del video: "Un solo corazón para la misión"</span>
           </div>
         </li>
+
         <li>
           <div class="cal-date-badge cal-deadline">
             <span class="cal-day">22</span>
@@ -214,6 +223,7 @@
             <span class="cal-event-name">Fecha límite: entrega de la colecta para el Cottolengo Don Orione</span>
           </div>
         </li>
+
         <li>
           <div class="cal-date-badge">
             <span class="cal-day">22</span>
@@ -224,6 +234,7 @@
             <span class="cal-event-name">Just Dance Masivo</span>
           </div>
         </li>
+
         <li>
           <div class="cal-date-badge">
             <span class="cal-day">30</span>
@@ -234,6 +245,7 @@
             <span class="cal-event-name">Show de Talentos</span>
           </div>
         </li>
+
       </ul>
     </section>
 
@@ -265,7 +277,9 @@
     <section id="noticias" class="noticias-section container glass">
       <h2>Noticias Janerianas</h2>
       <div class="noticias-cards">
-        <article class="noticia-card noticia-card--featured">
+
+        <!-- NOTICIA 1 -->
+        <article class="noticia-card">
           <div class="noticia-badge">
             <i class="fa-solid fa-bolt"></i> Nueva
           </div>
@@ -273,6 +287,17 @@
           <p>Empezamos el Mes Janeriano con la presentación realizada por 5to año, dando inicio a una nueva etapa de participación, compañerismo y espíritu janeriano para toda la comunidad educativa.</p>
           <time datetime="2026-06-05">5 de junio de 2026</time>
         </article>
+
+        <!-- NOTICIA 2 -->
+        <article class="noticia-card">
+          <div class="noticia-badge noticia-badge--gold">
+            <i class="fa-solid fa-trophy"></i> Destacado
+          </div>
+          <h3>Primer desafío completado</h3>
+          <p>Ya jugamos el primer juego del año. Talarn y Vall d'Ora dominaron el desafío consiguiendo 500 puntos cada uno, mientras que Cervera obtuvo 400 puntos.</p>
+          <time datetime="2026-06-08">8 de junio de 2026</time>
+        </article>
+
       </div>
     </section>
   </main>
