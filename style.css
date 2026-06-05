@@ -167,7 +167,7 @@ body {
 }
 
 /* =============================================
-   HERO SECTION — imagen estática
+   HERO SECTION
    ============================================= */
 .hero-section {
   position: relative;
@@ -593,7 +593,7 @@ input[type="radio"]:checked + label {
 }
 
 /* =============================================
-   CALENDARIO — rediseñado
+   CALENDARIO
    ============================================= */
 .calendario-section h2 {
   font-weight: 700;
@@ -610,13 +610,13 @@ input[type="radio"]:checked + label {
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.85rem;
 }
 
 .calendario-list li {
   background: #1c1c1c;
   border-radius: 0.75rem;
-  padding: 0.85rem 1.2rem;
+  padding: 0.9rem 1.25rem;
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -626,6 +626,7 @@ input[type="radio"]:checked + label {
   transition: box-shadow 0.3s ease, transform 0.2s ease, border-color 0.3s ease;
   user-select: none;
   width: 100%;
+  flex-wrap: nowrap;
 }
 
 .calendario-list li:hover {
@@ -700,6 +701,60 @@ input[type="radio"]:checked + label {
   color: var(--text-light);
   line-height: 1.35;
   word-break: break-word;
+}
+
+/* =============================================
+   EVENTO REALIZADO — badge y estilos
+   ============================================= */
+.cal-item-realizado {
+  border-left: 3px solid #555 !important;
+  background: #161616 !important;
+  opacity: 0.75;
+}
+
+.cal-item-realizado:hover {
+  box-shadow: 0 4px 16px rgba(80, 80, 80, 0.3) !important;
+  transform: translateX(2px) !important;
+  border-color: #777 !important;
+}
+
+.cal-badge-realizado {
+  background: linear-gradient(135deg, #2a2a2a, #3a3a3a) !important;
+  border-color: rgba(120, 120, 120, 0.3) !important;
+}
+
+.cal-badge-realizado .cal-day {
+  color: #888 !important;
+}
+
+.cal-icon-realizado {
+  color: #4caf7d !important;
+}
+
+.cal-item-realizado .cal-event-name {
+  color: #888;
+  text-decoration: line-through;
+  text-decoration-color: #555;
+}
+
+.cal-badge-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 2rem;
+  padding: 0.2rem 0.6rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.realizado-tag {
+  background: rgba(76, 175, 125, 0.15);
+  color: #4caf7d;
+  border: 1px solid rgba(76, 175, 125, 0.35);
 }
 
 /* =============================================
@@ -783,50 +838,33 @@ input[type="radio"]:checked + label {
 .noticias-section h2 {
   font-weight: 700;
   font-size: clamp(1.6rem, 3vw, 2.5rem);
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
   text-align: center;
   text-shadow: 0 0 10px var(--green-intense);
 }
 
 .noticias-cards {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.5rem;
-  flex-wrap: wrap;
-  justify-content: center;
 }
 
 .noticia-card {
-  flex: 1 1 280px;
-  max-width: 100%;
-  background: #222;
-  padding: 1.5rem;
+  background: linear-gradient(135deg, #1a1a2e 0%, #1e1e1e 60%);
+  padding: 1.75rem;
   border-radius: 1rem;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
   cursor: default;
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
+  gap: 0.85rem;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.noticia-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 0 28px var(--accent-glow-green);
-}
-
-/* Featured single news card */
-.noticia-card--featured {
-  flex: 1 1 100%;
-  max-width: 720px;
-  margin-inline: auto;
-  background: linear-gradient(135deg, #1a1a2e 0%, #222 60%);
-  border: 1px solid rgba(0, 122, 51, 0.3);
-  padding: 2rem;
+  border: 1px solid rgba(0, 122, 51, 0.2);
   position: relative;
   overflow: hidden;
 }
 
-.noticia-card--featured::before {
+.noticia-card::before {
   content: "";
   position: absolute;
   top: 0;
@@ -835,6 +873,11 @@ input[type="radio"]:checked + label {
   height: 100%;
   background: linear-gradient(180deg, var(--green-intense), var(--accent-glow-green));
   border-radius: 4px 0 0 4px;
+}
+
+.noticia-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 28px var(--accent-glow-green);
 }
 
 .noticia-badge {
@@ -853,9 +896,15 @@ input[type="radio"]:checked + label {
   align-self: flex-start;
 }
 
+.noticia-badge--gold {
+  background: rgba(240, 192, 64, 0.15);
+  color: #f0c040;
+  border-color: rgba(240, 192, 64, 0.35);
+}
+
 .noticia-card h3 {
   margin: 0;
-  font-size: clamp(1.1rem, 3vw, 1.5rem);
+  font-size: clamp(1.1rem, 3vw, 1.4rem);
   font-weight: 700;
   color: var(--text-light);
   line-height: 1.3;
@@ -864,8 +913,9 @@ input[type="radio"]:checked + label {
 .noticia-card p {
   font-size: clamp(0.9rem, 2vw, 1rem);
   color: #ccc;
-  line-height: 1.6;
+  line-height: 1.65;
   flex-grow: 1;
+  margin: 0;
 }
 
 .noticia-card time {
@@ -947,8 +997,9 @@ body::-webkit-scrollbar-thumb:hover { background-color: var(--red-intense); }
   }
   .puntos-card { flex: 1 1 auto; }
 
-  .noticias-cards { flex-direction: column; }
-  .noticia-card { flex: 1 1 auto; }
+  .noticias-cards {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* =============================================
@@ -993,7 +1044,8 @@ body::-webkit-scrollbar-thumb:hover { background-color: var(--red-intense); }
 
   .calendario-list li {
     padding: 0.75rem 0.9rem;
-    gap: 0.75rem;
+    gap: 0.6rem;
+    flex-wrap: wrap;
   }
 
   .cal-date-badge {
@@ -1003,10 +1055,15 @@ body::-webkit-scrollbar-thumb:hover { background-color: var(--red-intense); }
   }
 
   .cal-day { font-size: 1.1rem; }
-
   .cal-event-name { font-size: 0.85rem; }
 
-  .noticia-card--featured { padding: 1.25rem; }
+  .cal-badge-tag {
+    font-size: 0.65rem;
+    padding: 0.15rem 0.5rem;
+  }
+
+  .noticias-cards { grid-template-columns: 1fr; }
+  .noticia-card { padding: 1.25rem; }
 
   .valor-name { font-size: 1.8rem; }
 
@@ -1038,4 +1095,6 @@ body::-webkit-scrollbar-thumb:hover { background-color: var(--red-intense); }
 
   .cal-day { font-size: 1rem; }
   .cal-event-name { font-size: 0.82rem; }
+
+  .cal-badge-tag { display: none; }
 }
