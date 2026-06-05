@@ -32,18 +32,18 @@ window.addEventListener("resize", () => {
 });
 
 // =============================================
-// MÚSICA DE FONDO — instrumental suave, volumen muy bajo
+// MÚSICA DE FONDO
 // =============================================
 const bgMusic = document.getElementById("bgMusic");
 
 if (bgMusic) {
-  bgMusic.volume = 0.07; // 7% — muy suave, no invasivo
+  bgMusic.volume = 0.07;
 }
 
 function tryPlayMusic() {
   if (!bgMusic) return;
   bgMusic.play().catch(() => {
-    // Autoplay bloqueado por el navegador — se inicia al primer toque
+    // Autoplay bloqueado por el navegador
   });
 }
 
@@ -99,29 +99,28 @@ const preguntas = [
 // ASIGNACIÓN AUTOMÁTICA DE EQUIPO POR DIVISIÓN
 // =============================================
 const divisionEquipoMap = {
-  "A": { equipo: "cervera", nombre: "Cervera",   color: "var(--blue-intense)",  glow: "var(--accent-glow-blue)"  },
-  "B": { equipo: "talar",   nombre: "Talarn",    color: "var(--red-intense)",   glow: "var(--accent-glow-red)"   },
+  "A": { equipo: "cervera", nombre: "Cervera",    color: "var(--blue-intense)",  glow: "var(--accent-glow-blue)"  },
+  "B": { equipo: "talar",   nombre: "Talarn",     color: "var(--red-intense)",   glow: "var(--accent-glow-red)"   },
   "C": { equipo: "valdora", nombre: "Vall d'Ora", color: "var(--green-intense)", glow: "var(--accent-glow-green)" }
 };
 
-const divisionSelect  = document.getElementById("division");
-const equipoInput     = document.getElementById("equipo");
-const equipoDisplay   = document.getElementById("equipo-display");
-const desafioForm     = document.getElementById("desafioForm");
+const divisionSelect = document.getElementById("division");
+const equipoInput    = document.getElementById("equipo");
+const equipoDisplay  = document.getElementById("equipo-display");
+const desafioForm    = document.getElementById("desafioForm");
 
 divisionSelect.addEventListener("change", () => {
-  const div = divisionSelect.value.toUpperCase();
+  const div  = divisionSelect.value.toUpperCase();
   const info = divisionEquipoMap[div];
 
   if (info) {
     equipoInput.value = info.equipo;
 
-    equipoDisplay.textContent = "Equipo: " + info.nombre;
-    equipoDisplay.style.color = info.color;
+    equipoDisplay.textContent  = "Equipo: " + info.nombre;
+    equipoDisplay.style.color  = info.color;
     equipoDisplay.style.borderColor = info.color;
     equipoDisplay.classList.add("visible");
 
-    // Actualizar glow de radios
     if (desafioForm) {
       desafioForm.style.setProperty("--team-color", info.color);
       desafioForm.style.setProperty("--team-glow",  info.glow);
@@ -138,16 +137,39 @@ divisionSelect.addEventListener("change", () => {
 });
 
 // =============================================
-// SISTEMA DE PUNTOS
+// SISTEMA DE PUNTOS — puntajes iniciales oficiales
 // =============================================
 const POINTS_KEY = "mesJanerianoPuntos_v2";
 
 function getPoints() {
-  let pts = JSON.parse(localStorage.getItem(POINTS_KEY));
-  if (!pts) {
-    pts = { cervera: 0, talar: 0, valdora: 0 };
-    localStorage.setItem(POINTS_KEY, JSON.stringify(pts));
+  let pts = null;
+  try {
+    pts = JSON.parse(localStorage.getItem(POINTS_KEY));
+  } catch (e) {
+    pts = null;
   }
+
+  // Si no existen datos guardados, usar los valores oficiales
+  if (!pts || typeof pts !== "object") {
+    pts = { cervera: 400, talar: 500, valdora: 500 };
+    localStorage.setItem(POINTS_KEY, JSON.stringify(pts));
+    return pts;
+  }
+
+  // Garantizar que ningún equipo tenga menos que los valores oficiales mínimos
+  // (protege contra reinicios accidentales a 0)
+  let changed = false;
+  if (!pts.cervera && pts.cervera !== 0) { pts.cervera = 400; changed = true; }
+  if (!pts.talar   && pts.talar   !== 0) { pts.talar   = 500; changed = true; }
+  if (!pts.valdora && pts.valdora !== 0) { pts.valdora = 500; changed = true; }
+
+  // Si los tres son exactamente 0 (estado de reinicio), restaurar oficiales
+  if (pts.cervera === 0 && pts.talar === 0 && pts.valdora === 0) {
+    pts = { cervera: 400, talar: 500, valdora: 500 };
+    changed = true;
+  }
+
+  if (changed) localStorage.setItem(POINTS_KEY, JSON.stringify(pts));
   return pts;
 }
 
@@ -166,8 +188,8 @@ function updateUI(pts) {
 // =============================================
 function getDiaJaneriano() {
   const fecha = new Date();
-  const mes = fecha.getMonth(); // 5 = junio
-  const dia = fecha.getDate();
+  const mes   = fecha.getMonth(); // 5 = junio
+  const dia   = fecha.getDate();
   if (mes === 5) return dia;
   return 0;
 }
@@ -198,13 +220,13 @@ function renderPregunta() {
   if (fieldset) {
     fieldset.innerHTML = "<legend>Respuesta</legend>";
     preguntaHoy.opciones.forEach(opcion => {
-      const id = "resp_" + opcion.replace(/\s+/g, "_").replace(/[^a-zA-Z0-9_]/g, "");
+      const id    = "resp_" + opcion.replace(/\s+/g, "_").replace(/[^a-zA-Z0-9_]/g, "");
       const input = document.createElement("input");
-      input.type = "radio";
-      input.name = "respuesta";
-      input.value = opcion;
+      input.type     = "radio";
+      input.name     = "respuesta";
+      input.value    = opcion;
       input.required = true;
-      input.id = id;
+      input.id       = id;
 
       const label = document.createElement("label");
       label.setAttribute("for", id);
@@ -230,14 +252,20 @@ function getAlumnoKey(nombre, curso, division) {
 }
 
 function alumnoYaParticipoHoy(nombre, curso, division) {
-  const data = JSON.parse(localStorage.getItem(PARTICIPACION_KEY) || "{}");
-  return !!data[getAlumnoKey(nombre, curso, division)];
+  try {
+    const data = JSON.parse(localStorage.getItem(PARTICIPACION_KEY) || "{}");
+    return !!data[getAlumnoKey(nombre, curso, division)];
+  } catch (e) {
+    return false;
+  }
 }
 
 function registrarParticipacionHoy(nombre, curso, division, equipo) {
-  const data = JSON.parse(localStorage.getItem(PARTICIPACION_KEY) || "{}");
-  data[getAlumnoKey(nombre, curso, division)] = { equipo, fecha: getTodayKey() };
-  localStorage.setItem(PARTICIPACION_KEY, JSON.stringify(data));
+  try {
+    const data = JSON.parse(localStorage.getItem(PARTICIPACION_KEY) || "{}");
+    data[getAlumnoKey(nombre, curso, division)] = { equipo, fecha: getTodayKey() };
+    localStorage.setItem(PARTICIPACION_KEY, JSON.stringify(data));
+  } catch (e) {}
 }
 
 // =============================================
@@ -248,8 +276,11 @@ const feedback = document.getElementById("desafioFeedback");
 function showFeedback(type, msg) {
   if (!feedback) return;
   feedback.textContent = msg;
-  feedback.className = "desafio-feedback " + type;
-  setTimeout(() => { feedback.className = "desafio-feedback"; feedback.textContent = ""; }, 7000);
+  feedback.className   = "desafio-feedback " + type;
+  setTimeout(() => {
+    feedback.className   = "desafio-feedback";
+    feedback.textContent = "";
+  }, 7000);
 }
 
 // =============================================
