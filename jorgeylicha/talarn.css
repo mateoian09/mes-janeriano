@@ -1,0 +1,200 @@
+/* ==========================================================================
+   ESTILOS EXCLUSIVOS Y COMPLETOS: TALARN (HISTORIA ESPECÍFICA 1880-1885)
+   ========================================================================== */
+
+/* Aplicar fondo exclusivo a la página de Talarn */
+.body-talarn {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f7f3f4; /* Gris cálido premium con sutil matiz vino */
+    color: #333;
+}
+
+/* Botón Volver versión Talarn */
+.btn-volver-talarn {
+    display: inline-block;
+    margin: 25px 0 0 25px;
+    padding: 12px 24px;
+    background-color: #6b1d2f; /* Rojo Vino */
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9rem;
+    border-radius: 6px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+}
+
+.btn-volver-talarn:hover {
+    background-color: #4d1220;
+    transform: translateY(-2px);
+}
+
+/* Encabezado */
+.header-talarn {
+    text-align: center;
+    padding: 50px 20px 30px 20px;
+    max-width: 750px;
+    margin: 0 auto;
+}
+
+.etiqueta-periodo-talarn {
+    background-color: #f1e4e6;
+    color: #6b1d2f;
+    padding: 6px 14px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    border-radius: 20px;
+    text-transform: uppercase;
+}
+
+.header-talarn h1 {
+    color: #6b1d2f;
+    font-size: 2.8rem;
+    margin: 15px 0 10px 0;
+    font-family: 'Georgia', serif;
+}
+
+.subtitulo-talarn {
+    color: #555;
+    font-size: 1.15rem;
+    line-height: 1.4;
+}
+
+/* Resumen Contextual en Rojo Vino */
+.resumen-contexto-talarn {
+    background: linear-gradient(135deg, #6b1d2f, #8a2b3f);
+    color: white;
+    padding: 30px;
+    border-radius: 12px;
+    margin-bottom: 50px;
+    box-shadow: 0 10px 20px rgba(107, 29, 47, 0.15);
+}
+
+.resumen-contexto-talarn h3 {
+    margin-top: 0;
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 8px;
+}
+
+.resumen-contexto-talarn p {
+    line-height: 1.7;
+    font-size: 1rem;
+    margin: 0;
+    opacity: 0.95;
+}
+
+/* Contenedor de la línea de tiempo */
+.cronologia-talarn {
+    position: relative;
+    padding-left: 40px;
+}
+
+/* La línea vertical "hilo" */
+.cronologia-talarn::before {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 5px;
+    bottom: 5px;
+    width: 3px;
+    background-color: #ebd1d5;
+}
+
+/* CONTENEDOR DE CADA HITO (Crucial para que los puntos no se muevan) */
+.bloque-tiempo {
+    position: relative;
+    margin-bottom: 45px;
+}
+
+/* El punto/marcador redondo de la línea de tiempo */
+.marcador-linea-talarn {
+    position: absolute;
+    left: -39px;
+    top: 22px;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background-color: white;
+    border: 4px solid #6b1d2f;
+    z-index: 2;
+    transition: background-color 0.3s ease;
+}
+
+/* Tarjeta de Contenido */
+.tarjeta-tiempo {
+    background-color: white;
+    padding: 25px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid #edf2f0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.tarjeta-tiempo .ano-talarn {
+    display: inline-block;
+    color: #6b1d2f;
+    font-weight: 800;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.tarjeta-tiempo h3 {
+    margin: 0 0 12px 0;
+    color: #222;
+    font-size: 1.25rem;
+}
+
+.tarjeta-tiempo p {
+    color: #555;
+    line-height: 1.6;
+    margin: 0;
+    font-size: 0.98rem;
+}
+
+/* Hover dinámico al pasar el cursor por encima */
+.bloque-tiempo:hover .tarjeta-tiempo {
+    transform: translateY(-2px) translateX(5px);
+    box-shadow: 0 12px 25px rgba(107, 29, 47, 0.12);
+    border-color: #6b1d2f;
+}
+
+.bloque-tiempo:hover .marcador-linea-talarn {
+    background-color: #6b1d2f; /* El punto se llena de color */
+}
+
+/* ==========================================================================
+   ANIMACIONES DINÁMICAS (REVEAL ON SCROLL)
+   ========================================================================== */
+.reveal {
+    opacity: 0;
+    transform: translateY(35px);
+    transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), 
+                transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: transform, opacity;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 650px) {
+    .header-talarn h1 {
+        font-size: 2rem;
+    }
+    .tarjeta-tiempo {
+        padding: 20px;
+    }
+}
+
+.tarjeta-imagen-dinamica {
+    width: 100%;
+    height: 180px; /* Altura ideal para las imágenes de la cronología */
+    overflow: hidden;
+    border-radius: 8px;
+}

@@ -1,0 +1,219 @@
+/* ==========================================================================
+   ESTILOS EXCLUSIVOS: VALDORA (HISTORIA ESPECÍFICA 1837-1840)
+   ========================================================================== */
+
+/* Botón Volver */
+.btn-volver {
+    display: inline-block;
+    margin: 25px 0 0 25px;
+    padding: 12px 24px;
+    background-color: #1b4d3e; /* Verde oscuro */
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9rem;
+    border-radius: 6px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+}
+
+.btn-volver:hover {
+    background-color: #12352b;
+    transform: translateY(-2px);
+}
+
+/* Encabezado Profesional */
+.header-valdora {
+    text-align: center;
+    padding: 50px 20px 30px 20px;
+    max-width: 750px;
+    margin: 0 auto;
+}
+
+.etiqueta-periodo {
+    background-color: #e2ede8;
+    color: #1b4d3e;
+    padding: 6px 14px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    border-radius: 20px;
+    text-transform: uppercase;
+}
+
+.header-valdora h1 {
+    color: #1b4d3e;
+    font-size: 2.8rem;
+    margin: 15px 0 10px 0;
+    font-family: 'Georgia', serif;
+}
+
+.subtitulo-valdora {
+    color: #555;
+    font-size: 1.15rem;
+    line-height: 1.4;
+}
+
+/* Contenedor Principal */
+.contenedor-principal {
+    max-width: 800px;
+    margin: 0 auto 100px auto;
+    padding: 0 20px;
+}
+
+/* Tarjeta de Introducción Contextual */
+.resumen-contexto {
+    background: linear-gradient(135deg, #1b4d3e, #276653);
+    color: white;
+    padding: 30px;
+    border-radius: 12px;
+    margin-bottom: 50px;
+    box-shadow: 0 10px 20px rgba(27, 77, 62, 0.15);
+}
+
+.resumen-contexto h3 {
+    margin-top: 0;
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 8px;
+}
+
+.resumen-contexto p {
+    line-height: 1.7;
+    font-size: 1rem;
+    margin: 0;
+    opacity: 0.95;
+}
+
+/* Estructura de la Línea de Tiempo Alternativa Exclusiva */
+.cronologia-especifica {
+    position: relative;
+    padding-left: 40px;
+}
+
+/* Línea vertical central/lateral */
+.cronologia-especifica::before {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 5px;
+    bottom: 5px;
+    width: 3px;
+    background-color: #cbdad4;
+}
+
+/* Bloques individuales */
+.bloque-tiempo {
+    position: relative;
+    margin-bottom: 45px;
+}
+
+/* Punto indicador */
+.marcador-linea {
+    content: '';
+    position: absolute;
+    left: -39px;
+    top: 22px;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background-color: white;
+    border: 4px solid #1b4d3e;
+    z-index: 2;
+    transition: background-color 0.3s ease;
+}
+
+/* Tarjeta de Contenido */
+.tarjeta-tiempo {
+    background-color: white;
+    padding: 25px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid #edf2f0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efecto Hover Profesional */
+.bloque-tiempo:hover .tarjeta-tiempo {
+    transform: translateX(5px);
+    box-shadow: 0 6px 20px rgba(27, 77, 62, 0.08);
+    border-color: #c2ded3;
+}
+
+.bloque-tiempo:hover .marcador-linea {
+    background-color: #1b4d3e;
+}
+
+/* Detalles de las fuentes de la tarjeta */
+.tarjeta-tiempo .ano {
+    display: inline-block;
+    color: #1b4d3e;
+    font-weight: 800;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.tarjeta-tiempo h3 {
+    margin: 0 0 12px 0;
+    color: #222;
+    font-size: 1.25rem;
+}
+
+.tarjeta-tiempo p {
+    color: #555;
+    line-height: 1.6;
+    margin: 0;
+    font-size: 0.98rem;
+}
+
+/* Responsive */
+@media (max-width: 650px) {
+    .header-valdora h1 {
+        font-size: 2rem;
+    }
+    .tarjeta-tiempo {
+        padding: 20px;
+    }
+}
+
+/* Modifica el body para cambiar el fondo de la página */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f3f2; /* NUEVO: Gris lino suave/verdoso muy elegante */
+    color: #333;
+}
+
+/* ==========================================================================
+   ESTILOS DE ANIMACIÓN CON JAVASCRIPT (REVEAL ON SCROLL)
+   ========================================================================== */
+
+/* Estado inicial: oculto y ligeramente desplazado hacia abajo */
+.reveal {
+    opacity: 0;
+    transform: translateY(35px);
+    transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), 
+                transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: transform, opacity; /* Optimiza el rendimiento del navegador */
+}
+
+/* Estado activo: cuando JavaScript detecta que entra en pantalla */
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Mantenemos el efecto hover de las tarjetas que ya teníamos, pero mejorado */
+.bloque-tiempo:hover .tarjeta-tiempo {
+    transform: translateY(-2px) translateX(5px); /* Ahora también sube un poco */
+    box-shadow: 0 12px 25px rgba(27, 77, 62, 0.12);
+    border-color: #1b4d3e;
+}
+
+.tarjeta-imagen-dinamica {
+    width: 100%;
+    height: 180px; /* Alto óptimo para las fotos dentro de los hitos */
+    overflow: hidden;
+    border-radius: 8px;
+}
