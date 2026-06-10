@@ -214,7 +214,39 @@
     padding: 25px 30px 30px 30px; /* Mantiene la separación del texto */
 }
 
-/* EFECTO ÉPICO ADICIONAL: Zoom en la imagen al hacer Hover en la tarjeta */
-.tarjeta-navegacion:hover .tarjeta-imagen img {
-    transform: scale(1.08); /* Creará un efecto cinematográfico de acercamiento */
+/* Botón Volver */
+.btn-volver {
+    position: absolute;
+    top: 20px;
+    left: 24px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    text-decoration: none;
+    color: #94a3b8;
+    font-size: 0.88rem;
+    font-weight: bold;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.5rem 1rem;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    background: rgba(30, 41, 59, 0.7);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.25s ease;
+    z-index: 10;
+}
+
+.btn-volver:hover,
+.btn-volver:focus-visible {
+    color: #38bdf8;
+    border-color: #38bdf8;
+    box-shadow: 0 0 14px rgba(56, 189, 248, 0.3);
+    transform: translateX(-3px);
+}
+
+.btn-volver-flecha {
+    font-size: 1rem;
+    line-height: 1;
 }
