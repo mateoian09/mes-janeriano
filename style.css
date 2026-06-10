@@ -926,6 +926,132 @@ input[type="radio"]:checked + label {
 }
 
 /* =============================================
+   HISTORIA DE ANA MARÍA JANER
+   ============================================= */
+.historia-section h2 {
+  font-weight: 700;
+  font-size: clamp(1.6rem, 3vw, 2.5rem);
+  margin-bottom: 1.5rem;
+  text-align: center;
+  text-shadow: 0 0 10px var(--accent-glow-blue);
+}
+
+.historia-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.historia-img-link {
+  display: block;
+  text-decoration: none;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.historia-img-wrapper {
+  position: relative;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 0 24px rgba(0, 87, 183, 0.4);
+  cursor: pointer;
+}
+
+.historia-img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.45s ease, filter 0.45s ease;
+  filter: brightness(0.85);
+}
+
+.historia-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    160deg,
+    rgba(0, 57, 140, 0.55) 0%,
+    rgba(0, 0, 0, 0.45) 100%
+  );
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  padding: 1.5rem;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.historia-img-wrapper:hover .historia-img-overlay,
+.historia-img-wrapper:focus-within .historia-img-overlay {
+  opacity: 1;
+}
+
+.historia-img-wrapper:hover .historia-img {
+  transform: scale(1.05);
+  filter: brightness(0.65);
+}
+
+.historia-img-wrapper:hover {
+  box-shadow: 0 0 36px var(--accent-glow-blue);
+}
+
+.historia-texto {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.historia-texto p {
+  font-size: clamp(0.95rem, 2vw, 1.05rem);
+  color: #ddd;
+  line-height: 1.75;
+  margin: 0;
+}
+
+.historia-texto strong {
+  color: #fff;
+}
+
+.btn-historia {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  align-self: flex-start;
+  margin-top: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, var(--blue-intense), #1a6fd6);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
+  border-radius: 0.6rem;
+  text-decoration: none;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 0 14px rgba(0, 87, 183, 0.45);
+}
+
+.btn-historia:hover,
+.btn-historia:focus-visible {
+  transform: translateY(-3px);
+  box-shadow: 0 0 26px var(--accent-glow-blue);
+}
+
+@media screen and (max-width: 768px) {
+  .historia-content {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =============================================
    FOOTER
    ============================================= */
 .footer {
