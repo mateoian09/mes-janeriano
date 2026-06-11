@@ -137,9 +137,12 @@ divisionSelect.addEventListener("change", () => {
 });
 
 // =============================================
-// SISTEMA DE PUNTOS — puntajes iniciales oficiales
+// SISTEMA DE PUNTOS — puntajes oficiales actualizados
 // =============================================
-const POINTS_KEY = "mesJanerianoPuntos_v2";
+const POINTS_KEY = "mesJanerianoPuntos_v3";
+
+// Puntajes oficiales actualizados: Cervera=1000, Talarn=1300, Vall d'Ora=1200
+const PUNTAJES_OFICIALES = { cervera: 1000, talar: 1300, valdora: 1200 };
 
 function getPoints() {
   let pts = null;
@@ -149,23 +152,22 @@ function getPoints() {
     pts = null;
   }
 
-  // Si no existen datos guardados, usar los valores oficiales
+  // Si no existen datos guardados, usar los valores oficiales actualizados
   if (!pts || typeof pts !== "object") {
-    pts = { cervera: 400, talar: 500, valdora: 500 };
+    pts = { ...PUNTAJES_OFICIALES };
     localStorage.setItem(POINTS_KEY, JSON.stringify(pts));
     return pts;
   }
 
   // Garantizar que ningún equipo tenga menos que los valores oficiales mínimos
-  // (protege contra reinicios accidentales a 0)
   let changed = false;
-  if (!pts.cervera && pts.cervera !== 0) { pts.cervera = 400; changed = true; }
-  if (!pts.talar   && pts.talar   !== 0) { pts.talar   = 500; changed = true; }
-  if (!pts.valdora && pts.valdora !== 0) { pts.valdora = 500; changed = true; }
+  if (pts.cervera < PUNTAJES_OFICIALES.cervera) { pts.cervera = PUNTAJES_OFICIALES.cervera; changed = true; }
+  if (pts.talar   < PUNTAJES_OFICIALES.talar)   { pts.talar   = PUNTAJES_OFICIALES.talar;   changed = true; }
+  if (pts.valdora < PUNTAJES_OFICIALES.valdora) { pts.valdora = PUNTAJES_OFICIALES.valdora; changed = true; }
 
   // Si los tres son exactamente 0 (estado de reinicio), restaurar oficiales
   if (pts.cervera === 0 && pts.talar === 0 && pts.valdora === 0) {
-    pts = { cervera: 400, talar: 500, valdora: 500 };
+    pts = { ...PUNTAJES_OFICIALES };
     changed = true;
   }
 
