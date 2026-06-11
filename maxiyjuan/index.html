@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EL JUEGO JANERIANO DE ADIVINAR BANDERAS JANERIANAS</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego: La Huella Janeriana en el Mundo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Expansión de la Obra Janeriana</h1>
+        <p>Un viaje interactivo por las misiones de la Sagrada Familia de Urgell</p>
+    </header>
+
+    <main class="container">
+        <section id="start-screen" class="screen active">
+            <h2>Historia y Legado de Ana María Janer</h2>
+            <div class="text-content">
+                <p>Bienvenido al juego interactivo sobre la presencia mundial del Instituto de Hermanas de la Sagrada Familia de Urgell. Antes de comenzar a jugar, es fundamental comprender la magnitud de la obra que estamos a punto de explorar. La Congregación fue fundada por la Beata Ana María Janer Anglarill, una mujer cuya vida estuvo marcada por un servicio incondicional y heroico hacia los más necesitados.</p>
+                
+                <p>Nacida en Cervera (Lleida, España) en 1800, Ana María sintió desde muy joven la vocación de socorrer a los enfermos, a los pobres y a los marginados. En un contexto histórico turbulento, marcado por las Guerras Carlistas, ella no hizo distinciones de bandos políticos; su único bando fue el del sufrimiento humano. Trabajó incansablemente en hospitales, arriesgando su propia vida, y demostró que la caridad cristiana no tiene fronteras ni entiende de enemigos.</p>
+
+                <p>En 1859, a petición del Obispo de Urgell, fundó el Instituto de Hermanas de la Sagrada Familia de Urgell en La Seu d'Urgell. El carisma del instituto se basa en imitar la vida de Jesús, María y José en Nazaret, llevando ese espíritu de familia, acogida y amor a todos los rincones donde haya una necesidad. Al principio, su labor se centró en la educación de niñas y el cuidado de enfermos en España y Andorra.</p>
+
+                <p>Sin embargo, el fuego del carisma janeriano no podía quedarse confinado a la Península Ibérica. Con el paso de las décadas, las hermanas sintieron el llamado misionero de cruzar el océano y llevar la luz del Evangelio a nuevas tierras. Hoy en día, la obra janeriana es una red global de colegios, hospitales, misiones y centros de ayuda social que abarcan Europa, América y África.</p>
+
+                <p><strong>Instrucciones del Juego:</strong></p>
+                <p>En este juego, pondremos a prueba tus conocimientos sobre los países donde la semilla que plantó Ana María Janer ha florecido. Se te mostrarán, una por una, las banderas de 12 países con presencia janeriana: </p>
+                <ul>
+                    <li>Observa la bandera que aparece en pantalla.</li>
+                    <li>Escribe el nombre del país en el cuadro de texto (no te preocupes por las mayúsculas o las tildes, el sistema lo reconocerá).</li>
+                    <li>Presiona el botón "Adivinar".</li>
+                    <li>Si aciertas, descubrirás un dato sobre la misión janeriana en ese país.</li>
+                </ul>
+            </div>
+            <button id="btn-start" class="btn-primary">¡Comenzar el Viaje Janeriano!</button>
+        </section>
+
+        <section id="game-screen" class="screen">
+            <div class="game-header">
+                <h2>¿Qué país es este?</h2>
+                <p id="progress-text">País 1 de 12</p>
+            </div>
+            
+            <div class="flag-container">
+                <img id="flag-image" src="" alt="Bandera del país">
+            </div>
+
+            <div class="input-container">
+                <input type="text" id="country-input" placeholder="DE QUE PAIS ESTAMOS HABLANDO............." autocomplete="off">
+                <button id="btn-guess" class="btn-primary">Adivinar</button>
+            </div>
+
+            <div id="feedback-container" class="hidden">
+                <h3 id="feedback-title"></h3>
+                <p id="feedback-info"></p>
+                <button id="btn-next" class="btn-secondary">Siguiente País</button>
+            </div>
+        </section>
+
+        <section id="end-screen" class="screen">
+            <h2>¡Viaje Completado!</h2>
+            <div class="text-content">
+                <p>Has recorrido con éxito los 12 países que conforman el mapa actual de la presencia de las Hermanas de la Sagrada Familia de Urgell.</p>
+                <p>Desde las calles de La Seu d'Urgell hasta las misiones en Guinea Ecuatorial, pasando por el vibrante continente americano y el centro de la Iglesia en Italia, has visto cómo el legado de la Beata Ana María Janer sigue vivo.</p>
+                <p>Que este juego te sirva para recordar que, sin importar el país, el idioma o la cultura, el lenguaje del amor, la educación y el cuidado a los enfermos es universal.</p>
+            </div>
+            <button id="btn-restart" class="btn-primary">Volver a Jugar</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>Juego Educativo - Legado de la Beata Ana María Janer</p>
+    </footer>
+
+    <script>
+        // Base de datos de los países janerianos
+        const countries = [
+            { 
+                name: "España", 
+                flag: "https://flagcdn.com/w320/es.png", 
+                info: "Cuna de la congregación. Fundada en 1859 en La Seu d'Urgell por Ana María Janer para servir en hospitales y escuelas." 
+            },
+            { 
+                name: "Andorra", 
+                flag: "https://flagcdn.com/w320/ad.png", 
+                info: "Territorio clave en los orígenes. Ana María Janer trabajó aquí incansablemente, demostrando una caridad sin fronteras." 
+            },
+            { 
+                name: "Italia", 
+                flag: "https://flagcdn.com/w320/it.png", 
+                info: "Sede en Roma, corazón de la cristiandad, desde donde se coordinan lazos de unidad para toda la congregación." 
+            },
+            { 
+                name: "Argentina", 
+                flag: "https://flagcdn.com/w320/ar.png", 
+                info: "El primer país americano en recibir a las hermanas, creando una vasta red de prestigiosos colegios y misiones." 
+            },
+            { 
+                name: "Chile", 
+                flag: "https://flagcdn.com/w320/cl.png", 
+                info: "La obra janeriana ha dejado una huella imborrable en la educación de niños y jóvenes chilenos con espíritu de familia." 
+            },
+            { 
+                name: "Paraguay", 
+                flag: "https://flagcdn.com/w320/py.png", 
+                info: "Misiones llenas de vida donde la congregación apoya a las comunidades más vulnerables promoviendo la dignidad humana." 
+            },
+            { 
+                name: "Uruguay", 
+                flag: "https://flagcdn.com/w320/uy.png", 
+                info: "Comunidades pequeñas pero muy fuertes que viven el evangelio al estilo sencillo de Nazaret." 
+            },
+            { 
+                name: "Venezuela", 
+                flag: "https://flagcdn.com/w320/ve.png", 
+                info: "Una presencia valiente y constante, acompañando al pueblo venezolano en momentos históricos de gran necesidad." 
+            },
+            { 
+                name: "Colombia", 
+                flag: "https://flagcdn.com/w320/co.png", 
+                info: "Colegios e instituciones sociales que reflejan la luz y el amor de la Sagrada Familia a las nuevas generaciones." 
+            },
+            { 
+                name: "Perú", 
+                flag: "https://flagcdn.com/w320/pe.png", 
+                info: "Llevando el mensaje y el cuidado de Ana María Janer a las familias peruanas desde las ciudades hasta las periferias." 
+            },
+            { 
+                name: "México", 
+                flag: "https://flagcdn.com/w320/mx.png", 
+                info: "Tierra de profunda fe donde las hermanas janerianas siembran la semilla de la educación integral y cristiana." 
+            },
+            { 
+                name: "Guinea Ecuatorial", 
+                flag: "https://flagcdn.com/w320/gq.png", 
+                info: "La misión africana. Un testimonio vivo de entrega absoluta, educando y sanando en favor de los más desfavorecidos." 
+            }
+        ];
+
+        // Variables del juego
+        let currentIndex = 0;
+        let gameCountries = [];
+
+        // Elementos del DOM
+        const startScreen = document.getElementById('start-screen');
+        const gameScreen = document.getElementById('game-screen');
+        const endScreen = document.getElementById('end-screen');
+        
+        const btnStart = document.getElementById('btn-start');
+        const btnGuess = document.getElementById('btn-guess');
+        const btnNext = document.getElementById('btn-next');
+        const btnRestart = document.getElementById('btn-restart');
+        
+        const flagImage = document.getElementById('flag-image');
+        const countryInput = document.getElementById('country-input');
+        const progressText = document.getElementById('progress-text');
+        
+        const feedbackContainer = document.getElementById('feedback-container');
+        const feedbackTitle = document.getElementById('feedback-title');
+        const feedbackInfo = document.getElementById('feedback-info');
+
+        // Función para quitar tildes y poner en minúsculas (facilita la validación)
+        function normalizeText(text) {
+            return text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
+        }
+
+        // Barajar array (Fisher-Yates) para que el orden sea aleatorio
+        function shuffle(array) {
+            let currentIndex = array.length, randomIndex;
+            while (currentIndex != 0) {
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex--;
+                [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+            }
+            return array;
+        }
+
+        // Iniciar el juego
+        function startGame() {
+            gameCountries = shuffle([...countries]);
+            currentIndex = 0;
+            startScreen.classList.remove('active');
+            endScreen.classList.remove('active');
+            gameScreen.classList.add('active');
+            loadCountry();
+        }
+
+        // Cargar país actual
+        function loadCountry() {
+            const currentCountry = gameCountries[currentIndex];
+            flagImage.src = currentCountry.flag;
+            progressText.textContent = `País ${currentIndex + 1} de ${gameCountries.length}`;
+            countryInput.value = '';
+            countryInput.disabled = false;
+            countryInput.focus();
+            
+            feedbackContainer.classList.add('hidden');
+            btnGuess.classList.remove('hidden');
+        }
+
+        // Comprobar la respuesta
+        function checkGuess() {
+            const guess = normalizeText(countryInput.value);
+            const actualName = gameCountries[currentIndex].name;
+            const normalizedActual = normalizeText(actualName);
+
+            if (guess === "") {
+                alert("Por favor, escribe el nombre de un país.");
+                return;
+            }
+
+            feedbackContainer.classList.remove('hidden');
+            countryInput.disabled = true;
+            btnGuess.classList.add('hidden');
+
+            if (guess === normalizedActual) {
+                feedbackTitle.textContent = `¡Correcto! Es ${actualName}`;
+                feedbackTitle.style.color = '#2e7d32'; // Verde éxito
+                feedbackInfo.textContent = gameCountries[currentIndex].info;
+            } else {
+                feedbackTitle.textContent = `Incorrecto. El país era ${actualName}`;
+                feedbackTitle.style.color = '#c62828'; // Rojo error
+                feedbackInfo.textContent = "¡No te desanimes! Conoce un poco de su historia: " + gameCountries[currentIndex].info;
+            }
+        }
+
+        // Siguiente turno
+        function nextTurn() {
+            currentIndex++;
+            if (currentIndex < gameCountries.length) {
+                loadCountry();
+            } else {
+                showEndScreen();
+            }
+        }
+
+        // Mostrar pantalla final
+        function showEndScreen() {
+            gameScreen.classList.remove('active');
+            endScreen.classList.add('active');
+        }
+
+        // Event Listeners
+        btnStart.addEventListener('click', startGame);
+        btnGuess.addEventListener('click', checkGuess);
+        btnNext.addEventListener('click', nextTurn);
+        btnRestart.addEventListener('click', startGame);
+
+        // Permitir pulsar Enter para adivinar
+        countryInput.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                checkGuess();
+            }
+        });
+    </script>
+</body>
+</html>
+</body>
+</html>
+
