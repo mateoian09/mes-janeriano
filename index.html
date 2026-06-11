@@ -146,7 +146,7 @@
       <h2>Calendario de Eventos</h2>
       <ul class="calendario-list">
 
-        <!-- EVENTO REALIZADO -->
+        <!-- EVENTOS REALIZADOS -->
         <li class="cal-item-realizado">
           <div class="cal-date-badge cal-badge-realizado">
             <span class="cal-day">5</span>
@@ -159,39 +159,43 @@
           <span class="cal-badge-tag realizado-tag"><i class="fa-solid fa-check"></i> Realizado</span>
         </li>
 
-        <li>
-          <div class="cal-date-badge">
+        <li class="cal-item-realizado">
+          <div class="cal-date-badge cal-badge-realizado">
             <span class="cal-day">8</span>
             <span class="cal-month">JUN</span>
           </div>
           <div class="cal-event-info">
-            <i class="fa-solid fa-paint-roller cal-icon"></i>
+            <i class="fa-solid fa-circle-check cal-icon cal-icon-realizado"></i>
             <span class="cal-event-name">Decoración de Aulas</span>
           </div>
+          <span class="cal-badge-tag realizado-tag"><i class="fa-solid fa-check"></i> Realizado</span>
         </li>
 
-        <li>
-          <div class="cal-date-badge">
+        <li class="cal-item-realizado">
+          <div class="cal-date-badge cal-badge-realizado">
             <span class="cal-day">11</span>
             <span class="cal-month">JUN</span>
           </div>
           <div class="cal-event-info">
-            <i class="fa-solid fa-monument cal-icon"></i>
+            <i class="fa-solid fa-circle-check cal-icon cal-icon-realizado"></i>
             <span class="cal-event-name">Presentación del Tótem de la Casa</span>
           </div>
+          <span class="cal-badge-tag realizado-tag"><i class="fa-solid fa-check"></i> Realizado</span>
         </li>
 
-        <li>
-          <div class="cal-date-badge">
+        <li class="cal-item-realizado">
+          <div class="cal-date-badge cal-badge-realizado">
             <span class="cal-day">11</span>
             <span class="cal-month">JUN</span>
           </div>
           <div class="cal-event-info">
-            <i class="fa-solid fa-trophy cal-icon"></i>
+            <i class="fa-solid fa-circle-check cal-icon cal-icon-realizado"></i>
             <span class="cal-event-name">Desafíos de Salón</span>
           </div>
+          <span class="cal-badge-tag realizado-tag"><i class="fa-solid fa-check"></i> Realizado</span>
         </li>
 
+        <!-- EVENTOS PENDIENTES -->
         <li>
           <div class="cal-date-badge cal-deadline">
             <span class="cal-day">13</span>
@@ -281,9 +285,6 @@
 
         <!-- NOTICIA 1 -->
         <article class="noticia-card">
-          <div class="noticia-badge">
-            <i class="fa-solid fa-bolt"></i> Nueva
-          </div>
           <h3>Comenzó el Mes Janeriano 2026</h3>
           <p>Empezamos el Mes Janeriano con la presentación realizada por 5to año, dando inicio a una nueva etapa de participación, compañerismo y espíritu janeriano para toda la comunidad educativa.</p>
           <time datetime="2026-06-05">5 de junio de 2026</time>
@@ -291,12 +292,16 @@
 
         <!-- NOTICIA 2 -->
         <article class="noticia-card">
-          <div class="noticia-badge noticia-badge--gold">
-            <i class="fa-solid fa-trophy"></i> Destacado
-          </div>
           <h3>Primer desafío completado</h3>
           <p>Ya jugamos el primer juego del año. Talarn y Vall d'Ora dominaron el desafío consiguiendo 500 puntos cada uno, mientras que Cervera obtuvo 400 puntos.</p>
           <time datetime="2026-06-08">8 de junio de 2026</time>
+        </article>
+
+        <!-- NOTICIA 3 -->
+        <article class="noticia-card">
+          <h3>Talarn arrasó en la decoración de las aulas</h3>
+          <p>Talarn arrasó en la decoración de las aulas, coronando su segundo juego en este principio de mes, obteniendo 800 puntos y quedándose como único ganador del Mes Janeriano hasta el momento.</p>
+          <time datetime="2026-06-11">11 de junio de 2026</time>
         </article>
 
       </div>
@@ -307,7 +312,7 @@
     <section id="historia-janer" class="historia-section container glass">
       <h2>La Historia de Ana María Janer</h2>
       <div class="historia-content">
-        <a href="jorgeylicha/index.html" class="historia-img-link" aria-label="Ver la historia completa de Ana María Janer">
+        <a href="https://www.escapadarural.com/que-hacer/talarn" target="_blank" rel="noopener noreferrer" class="historia-img-link" aria-label="Explorar Talarn en una nueva pestaña">
           <div class="historia-img-wrapper">
             <img
               src="https://turismecervera.cat/wp-content/uploads/2025/04/2024_09_19_15_53_IMG_3974-scaled.jpg"
@@ -315,8 +320,8 @@
               class="historia-img"
             />
             <div class="historia-img-overlay">
-              <i class="fa-solid fa-book-open fa-2x"></i>
-              <span>Ver historia completa</span>
+              <i class="fa-solid fa-compass fa-2x"></i>
+              <span>Explorar Talarn</span>
             </div>
           </div>
         </a>
@@ -333,6 +338,31 @@
           </p>
           <a href="jorgeylicha/index.html" class="btn btn-historia">
             <i class="fa-solid fa-arrow-right"></i> Conocer su historia completa
+          </a>
+        </div>
+      </div>
+      <!-- NUEVA TARJETA: Conformación del grupo janeriano -->
+      <div class="historia-content historia-content--second">
+        <a href="maxiyjuan/index.html" class="historia-img-link" aria-label="Explorar Talarn">
+          <div class="historia-img-wrapper">
+            <img
+              src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxMSEhUSExMVFRUXFRUVFRcVFxUVFRYWFRUWFhYVFRUZHSkgGBonHRUVITEhJSkrLi4uFx8zODMsNygtLisBCgoKDg0OGBAQGy0lHyUtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLSstLS0tLS0tLf/AABEIALcBEwMBIgACEQEDEQH/xAAbAAABBQEBAAAAAAAAAAAAAAACAAEDBAUGB//EADkQAAICAQMDAwIFAgQGAgMAAAECAxEABBIhBTFBEyJRBmEUIzJxgUKRUqHB8AcVJLHh8TPRYoKj/8QAGgEAAwEBAQEAAAAAAAAAAAAAAAECAwQFBv/EACgRAAICAgEEAgEEAwAAAAAAAAABAhESIQMTMUFRBGEUBSIjMpHh8P/aAAwDAQACEQMRAD8AlDYL4wwqz7c8AjvHvCIxADHYAg4V4ezBIxWA6nJQchC4anEwJMfABw++QVYQesRxgPGSbcl6ArkZKAKwaw+2UwAvI2bDYZCTjSEx7xDHAxqyhB3irB3YSYhhgYt+OxoYAyQLEEwyxLqOMpba5OBI+RgmysqRI0uCJMrk4S5piibJmbGU5HhADCgskBxwchBww2Kh2Eca8bdjYUAa4eR3g78KAl34si3nHwxAjbGvLZ05+ME6b7YZoKZUbEMsNpcH0MrJE0yIYsk9GsIQ4ZIdEanGZslaLIzDgmhCDZIhyD0jhBcGkBbRbySQ1leNqx3kzNrZVhhcZhghzjM5x0AqwCuN6n2xb8qmIILiK46yDCaTFbAhK5JGuOHGK74wbABzZyRI65OEqgecTP8AfFfoKAbvkTrkxODjWgIlGFtyVFGExGDkFFZkxsmOAwxpgIYxxKMcrjAEtiGLbi24APeIY4XHrAB8WNWPiA21C4W0Zm+sMdZx4OcnTZtkaaxrjNpU+Bmd633yUT/OS4SXkMkSyaYfGRnSD4xxqBkbS+R/3ykpCdDto18cY34H7/8AbGOpJ75FvP8A6y1n7FaJW0X3yP8ACfJxByPJyb1L+MLkhaK5hrBEd5ZI/wBjG3HHkxUVwo7Vi485M94RnbyAcLYFcop84Hog9jhtHf8A4x9h7C8u68iIhp8BoiMmCsPBwSj/AAcal9iIwuInD9NvjBMbfByrQgLxtuE0Z+Dgc5SAesfB3kYxfChB+pjGTALY27HQWSb8ffke7GxUOyQvjFsHacJV++GgG3Y14TUMH1MYD49YHqYt2FCsl4xZDux8KHZaK4gmTAY1HMbKoj9PEFOTKn3w9mLIKKjY1nLezG9LHmgaK4Y4vUOTtDjGDDJC2RrMck9TENP98f0DibiPY3qjF6owGjPxgsp+MdIVsl9UY+4HzlcYQF4YoLLCgZIG++QxwffLaIo70czk0UiLcfnHG7LYI+MYy1meX0VRX2vg7HyyNT9hhjVjyBiyl6CkUvRb5ON+DbL51q4B1oxqc/QUiodAT5GRHQ13Iy4+pGQtLeXGUxNIgkgT/wBZFtQf05YvBOWmySs0ldlA/jImY5cKYPp5akkJooknGrLphwTDl5oWJTrFllocAxHKyQqZFjVkm3FWOxUR7cWSfxiwsKLgvH3HJVTFtzms1BDnG3nD2Y23C0AvUwhJg7MdY8ToNh+pjF8cJk8US/f+RkNpDplfjDSMnNFIBkn4ceMyfKisDN/DnF+HzQMYHc/3OQyTIOxJ/bBcjfYMUV00w+MlEA+MBtX9shbVE+BlVJi0iz6IyFyoyBpCfOCf3ylB+RZEj6jIjPjFR84gg+c0SSJtjevjibCEQ+f8sy/qPVvAsRSNZdztuViygiONpa3Ajbe2r++Z8vLHji5MrjhKcqRqhx84t2RaA+pGHYAE3e264JA4PIur5+ckaAfOHHyRnFSXkJRcW0wrwSMb0fvjiL75pokBsjLHJ/TrHBHx/ljyAr7zi9Y5Z3LjGRcL+gIVn+2GJx8HHNYwI/2MNAFvXESuIV9sRjxaGNa421ftjmLIzHjVAHsGNgbcWOhGkUxbMPHGc1mhH6Ywhpxh2MV4rYUONMv3whCg74OLaMnfsehyQO2ItjbcJUwAHdglvvk2zHEeFoCmY8ExZoCH/fGEIRh1KFiZp0+MdPmp6GOIMOsGBlDTHF+FOa4hGEI8XXDAxTpThrpfm81/RGL0f3w64+mZq6QfP+WeXa3RqesBGJfe8y03uX2iQVyeONnjivvnsLRAcngfJzyrq0b/APNl8L+Im2NR/qjJtfBB45HxnmfqPLlFK9/6O34XG8rr/rNn6LjjdlZYkj3xNISvB5fYo+Dwpv751T6P/wDL/tmP9L6e3tdu2nX2pt/TzQo8DduNV3vOjOm/bK/TOT+J78i+dD+QoNpyOx/yyNoWzQbSn/ZxhAc9Rcpw4mcsRxNEfjNIQHDWL7Y3yhgZHpH4xvRzcbTYDaUYLnQ+mYpiyMxZtnS4P4U/GUudC6ZiFMcA5sHTHA/CH4yushYMytxx/UOaZ0f2wDpMfViLBmf6p+MWXfwWLH1IhiyztOCynNt4QCBfJPar8X/GUIuowGWeEtsaAxhy5CrciepSknkgEXnnv5UUdHSZR2HGKHNvTtHKLjdHANEowIBIsD96yX8ID3H+++NfKiJ8LOfCnCF5sa5YYUMkrKiAElmNDjuB5J/bKen1WmlKqj8vW0EMpNix3Hxkv5vGnTZS+PNq0iqL+cffmo2miB2F1DEE7SwBoHaTXxfGKLpqsLFkWRY7Wpo5S+TxvyT0Z+jLEuSLNlx9DGCV3qGAuiy2AePnD/5Z/vxj6/GxdORTVz8ZKjZcTp5+MyOtdQ/DuI1hklcp6m1Vfbt3EEmQAha2k0cznzwStsqPFJukaayjtWHQ+M8+6p9Y6uNd0elRyWVdil2ZPbfJ/gg2B9soaDq2rnmQPA0cctO0qySBQTGL/L3UaI2HOKfzIr+qs64/Fk/7OjsPrHWPp4VnR1TYXJLhiCNnKhQylmPgXmUnUtQNvr6it5pdiFADW7azksF4v47d8ki+mY9SjrqN7gkBVWaRk2EkqyByQp4HI575wn/EXrH534VkYLCQAfi1UNbK1SA9rIHftnBy8rnOzqhBQhR3OtlkELyDVPFtAILMrxtdmvf2Jrim89sw/wDmUjyBF18j2jN+UkclbWUFTsBINNd1nJ9Q+q5niijNbV2OQqVxHYVdrctVXuBrn+M6X6X6sZ+pxkRvGBo3oNttgx3BgFAAH/1mNyvZopRLUkMhDgyzPdFPUi1DbKQLXYAgmyf3HxiEP5UIZpN0ZTcTHqLchWDCz4Nqa+33ztCx++QdR1eyGSQk0kbObNXsF0D47V/Iyds0uvBx/Tg0LO3qy2QApWN0o+7eW9lc2OB8Z3X0/qWfTxmV1aTZch4UnzuK+BXN5lQ9ankRJE0spVwGFzRBgGFgsN9geP3yOSVQiCV3iDXE0bk+8tuXZvTdu3XdAmxXF8Ztwcz4pWY83EuRUdVBTqGAO0gEHnsReG0NeP8ATPK/qnU1GqaR3dgdkqCNJIo1AcKgOzcrClNMOz/Y5e+lupkx+2SWJ0dIXUbCsktDe/psvC9qo39hnYvnPyjm/DXhnopj+2CBlbS6pY4FM0y2oIdmpCSt/wBPk1XbvmO31hEWpYJT7iLcogKAj8wdzyOdpAPzXjr/ACYUm2c/Rm3SR0qt9sN8wx9SaW1X1CGZtoWrYezeGZVJpSOAb78Vl6brGmiFyTove9xNgqPcGoe0j4NYdbje0w6U13Ra2/bB2ftlWT6i0g33OoEZAcneApaiLO3tRFnsL5y1p9XDLRjkR7FjawaxxyP75S5ovyJ8cl3QBTG2DLDLWRNmqlZm0REYJT7nJduMYsqxURemfk4sm9HFjyCjybQfXgDH1Vk5YjdHIyg0GCM4vd2J7Hz+2dRF1LRTooaQlWIIJikZgxAW1cA29kC+TyM8t0wMmoWBELnddIrb+a9u2ufv++dLrOujQQmFVKTlg6h0VlWNmF7lPIcbSQD/AG5Bz56aXg9mEku52OghihSSFNWxgcITG2+JwQfcwfYrjcBXB+f3xavV6gOsun1KXbGSOMlBIgAEW2GUkF65LC93wc5fp31XqtVplqV0kim06MYi53hvVuSRVU7UFAHmjz27Z6Jrommh2g+oWSEbzJtg3iRrZVWypBNkeRtHjhJtUL9rV0efavpE2okbVT6h1ILNtlUybRRFKqP7QO3CDJumfSepmT8ObVtP6TUzUrb5CAwYqHBCq9j7+arOi1geGCXdvjddNbH1iYVIKLuWMrQ/SfcSP6vnN9pXjmdqUI8mkRN1bf1Ts+wsB7qCn5FZMpysulWihD0lHkQKwQO+z2XTHa7HyLPHkVwczYfp7UxOCJ2benDKJUCm0HeLbHXuJ5SyAT4Ob3Q2oLK9pUrLsC7d5VHY8Wa8sDYuh81kWs6xa36WosRtLtDKAzK8a+nySN32uipf5vM4t5aKdmDpelSECRHTc0UciusbqzNtR9xYEq932K2DY5rL2mOshtRq6UiUoNit+lSwAWQEKb/YduPGYvUPqCLTad4iWWZdCigxtcSzRgKEX4cOwLmqri+MrfUP1OkQikKRU0Evp2S7OC+268EAXzQNfGHHnbDkcHok6L1LUHWQvJLK+5RvLOyOQqMVQrGyqa7WU/k5suztNFvlcGUtGq8MC21pCXJpqCq3AIv+c4fS9WSJ9IQWffSKf0k7wUDGroWw9oN532phb8VpPah2NLIW3NakJ6e2tvdt5q6/Tm0tszhVFTSIjiV1lsxsilTBDF6Zf8wD8v3cAFaY3d98q6jWyhXUbUYzuFmIjWOKBpL9RgTtX2g8VXmszYkjgimbVBEVtRDLHGmpEhb9AkDlOXbZH3P6t7cCyc4zRddc6syRIxR5CEiG51Cu1CP3EWQDQ4xVsbaSR6h9JyAwDT6ieLYTW8nT+yJAoWLZGQApCt77DAtx2vOX+pvozSMh1EOqCFqHoRKZVDkqvpj3csSSxN0NpzXk0e1ZTKGiAdEjMZS3Up+rZe0G93f/AA5maDq2lSSN90zAPSI2xorCUxZKU1y1Ev8A1HDJXoHC0Z3SPoITq6PMEmRowBIGWkuiuyqbgqe9geM6jo/0T+A1Yn9UMPTCigfTb1L3bdzbuOD8e6hmh1tykqhYht9GSUiNPTJChPzGLPTUCO1/pH8UoepyFYhtZkIEqmozcchC7jtezyv2PIGN21olJJ7N6bXIHjW1IcsGaxUVIWG8eLIC/uRmB9ZahptL6MDIXnCLTNsKgke1gRwxNDk/9soyz25jC6ve0xUHciEExmYR7Sor2FWBJ7Cucn1i+hp4ZJHm5mKyB3Ab0yVLM5iIFBLNAdv3zNQa2aNplroup06BC0qLKYI4nJ3BPyrIUM3tu2aueawyulld52dm9pjBjZZI1lBZ0mCA+2YALRPwMz5OnRM7rNIJlCxkLqN7Rxm03uCD+pg60O6lq7E5BLCsEmsPoGKGCdXQRxgLJCllw4LqTY9pdbqseF+RKePZG/0zp+n/ADqnmeR4UtliqcGK2dlNHe7XyOe3HfmDrsatMsQ95gneZnmO07SyMI4yhFbew3A8D+cxdFrE0u+R/wARI8cUZcAqiqdqsWSTf3IYXxm10YNrIl1BoGYuzC7CszsGUE+B2H2GS4TUtbNI8kJLZzWsRmM2omkCMgndCQXb00YNEkb3wPcRzyRdcDLOoUxyyu35caN7XV1Mkd8BQUP5n/6i+RfY50vUoPwsck7UViVmYA+41VUp+dwGcdDrAdJpJd9zSylSEKBgS0jO1MCF8gNXF5ok2qaIk0n+1mjoddp2U/8AUgKDQ3Lsdjts7SY+ABZv7eecknlMoaEJqJdPM6SmTZJsYkD8z1UqwKsni6HxmdNJMVpXLBm27hqojtElR235QG0bhY+M0IZp4IYI1lhQwwcHe53tW4K0YPLHZQoc78aiLJAza/TyqmkikiulUvGwLyCOgPUcWSxqz3NE9hk2g6JGjflIoeM+702b2u26gxBBYkBD80RleWN0kmSGZ5pYuHjlWOFAr92jlUdwLHPz81mful9EPumTfJPQgMsqAIyRlfy18bCdx5O/7ZlCDl2f+TSfJFd1s6XruvMCoul1QDsxMkcmqhEqt6YKRlpW3gMxPbg8cc5m9N67rjO0LaplAUFTLCrA7pVQWw7klhR8A84XXunTCZWmWQrTOtbJERYwRteRU3E8Hjgm/wCM5npGtI3SbY5EWN3YRh4yvpU5IL2FIKLQrn+M2i5KNJmVQb3R6dB1bULIEZYpVLOC6l1MZUIArIF9w3MLYdt3xWFrfqz0jX4SaXiy8LRshpNzEbiGoU3cD9J75wel6sJNRFGPXVmdQn5wA3E+ruZgnNkVyD2rtmzrurbp9xaIr6XDeoq+8xyo6qKXdW++3NHtmi5+SPdmcuHjl2R00f1z08gEySqa5UwS2D8HjHzjNb9SRl2Ppwnmh70BoCgCL74sv8rkI/HgdUOg6U7/AMpB6teoV9pkpg/uZSCfcoPfuMyvqT6Ng1b73cq1gkqke5qVVUM/DN+k97PPehkOn+vtMSyvBKhFd1N8kAbg1bTZH98v9M+qYZidsEu0Ae/aGUlgDXew3J4+2cmUkdGMTR6f0aGDcyKN77d8n6WYL+kHZQFduB+95V+pvp8auExLK0RLBybkdDts7Wi3BSLN/Y85k9d+v4oHiVIfU3myS20bN232ccnufA4y91jrsp/CNogrRzSASPQJRf106nlfaGs/bDKQqRJ1n6fLqDp/SinBBWVlJ7LtHYHdXgEEDjK0HSNeWb83Rh2ZZmkOnYszR+0GQhq9QBm7A+eec09VI7EMzKQb21wbH6a57ckk+Kw+r61kBKbGPFKGW3ar2Ak0v/vJTaKavZFrItY8J2voyrggSK+phIPK7lZFeyCKu/FZmy9K6g5BVtIKsfrnkBo9yJE4IJbt8+eMsn6jUSRaeVPfM+0BWtUYIGZSf6gGNE8d/jNeTUjTlUO/dJZUABztA9zle+0cAn5ZfnCxUjyv60V9PpzomgiE0jpM8kBdkq5BttgChs9vNDLaTRxDSod0nrxoVbTvJE6uZNhSQGQhyGFXwBRz0g6qKVgolXewRgtDeFLKu4xEXXNHji7OF1PR6dCszwpK4YqrejDuTaGkFN6d97r7nKy1Q1DycPL0xTNzppjJuDlZDGyUxYbtqS+z9F2OeBxznQLppkl1OwFRp4vVYs8npyERiVTGzEFTXtLMQBXmsp/8TOr/APLpISmnQiQgSzbFDmOJ7MCuAO9Bqvivg8c31fqsryzOAV/ELtZEDBpImQ7Q47klCBR70OAMLrwS3WkV/wDiBImlghjWKJW1KLMyoqFURbRfeCSXBBpgaq/nOJ6fOyukw30jrR7gMOQe+ep6X6e0vVYkLyTKun/6ZFQxiNQERzsDKWr3+SeQfGW9L9DaLSgqB6pPu/PSOSgQVNe0cefsecvOPYjFvY6dYgmmjhSVHJbeV5YALE5O7jaACe3/AN5d0oVomKoW97rTbSwIet13RQfqAvt48ZgdM+ndLp9RvV5iVDNscKYzY2gA1Z7/ALds1dBNp4d+yQemzrUYUCON22jbGFHzRr98zr0Wn7M/W6VdKH1itJ6npy6ddu2Tb7FlV9gFrtdr2t4HwRknU+qv/wBMixtcke+SgNo3I1Kfg7kZ+P8ADmrAWkXaXkFesVLRxg+9Sh4HeqsAjnzeV+mfTwgiESSyMCSxLUSRtKgU10vuPC1zlr7CXfRb0+m3SmSVndhJIYUfayxWeGQIB/TajdZAyh9WagQp6voo7jlBIfTNmlYo1iiF+PGbj6pUfgIjOdxrgnvxyeOfjOK+qNKvUJFYyyIsaGlCDgkkMWB53Hj9hX3ysr0RVbNTpej1c9CRYdMkiu5jVi8xCFVO3uv9S+49t2RxJH0/TF9z1INPLSH1Wu2WRUdv1Le43xw3GavTWf8ADqqSH9Oz1CqiXaKDgMP03Smx8A5nQdEkTcBqHKEUI3G8AV2DMbHJJ79zmH7rZq3pGf1frKS6GZd0hcxbadGBdqX3VzRPfJvoHqzJoIRsQgGRTe4Hh+/we+a8P09+X6bSswKspagj7T2ojgHnv3x+ndAWCPZGQF3M35g9Q+7kgHiuc0jOlshxM7rOvD6PU6cenGDGQouQm2l5MjvSov6m80Mwui/T8iJpi8ahkdpHfgj01LUqkKQN1qeSLr7nO36nofViMVKAwprFgr3IoV8HMvU9AlLrtk4Vdo3NJ2raBtUgNxXcZWYnEg12qUo7HTgBHKHbHGruu4bpVbbwoDEgiiAO+S/SPWNPqoSPTgBiCxMZjTGNaMbgjirB7HuDmRrtMtNFKyB3XY//AFDK3sN+0MKIrj48c4+maFVZI9PHKGT9KTozNySE2X8saodycU9ocdM5brBmTU6v0tyFZFkapbkYSMCrb1Pu/WCQDxu+2ejf8J1nXSoWklVGlmmijjJYFY6SVZ7W+X5UXZJOedwhX1QV4IoD77SaMqoUAtyCN1hFIHPes6QfVOnhASOOVUVSFVBsCq53EAE8A9yfkc406Ju3bO2+p9XtWGR9Q8MTxSKYWjcpM5NgSsP/AI3APY/Bzj9D1qK59heIusvpsgjV1AUqpQ7gd/8AUt19yMHS9d0ksJhm3em9b03SEAAl+HHIX2jgHzlXpHROlyxs6mdmVnYhVmLIqta7toql4s5EU42P+z0assmp06w6iXVaxlJ9Ro39E0IRt2uPV928EGh45okZx/1BFqdXI+pSB2jkf2Mq7Q1L5XwQFokDwPnn08RhtxUGwfdydw3cjeC1g1zR55ybTO4G0E0psjcAP2PPY8cH7Y3L6Hh4s8T6n02SOVk276r3emwskAngg/Nfxiz3VdS449w/n/ziw6n0PpnCdG1Seo8kuySiFi3RMG3rShiX/poFSB8g5c6PFpSJjqIYDKJiG9m3be3au0gWKANgVkGlnmDKyWrKS9cfqClSS22iab47Gh5yIyspZiqi2JYMpG5ns3VUAQT9qBHBJzCUrNFNIua/qWklnmQQgvGm1mQK1pxtFsOSL7+CM5+DQvBqFbTxTmKPawMlFiz7VICoaIBPHetvnNeFxtoSenYHC7CTySqmz278cfHjGglWNq3SbWXd7AAHpmsEqOOewB8/GCnS0iZNPuZMeqKzRNGZV4aOO7IRi59RgrAA8sbs+Muaf6g1gLW5oliCVBQ03dNvjg8fBOaU2n3C5AW2gBd7ggjuvvPYEmuLsivGNpS7SvufmgEuN918Mypu9rsOW3VxXbKzvwI1tL1dJK3RbGBsbhuOw1742Cmj275iabqSRzSsryiSd+WdSxReKALkUljz2rtQyyenFWkB28hrSye62DVkKaJvg2R/GVNV0mNhw5KqDa1TgAikBYAsSL7nnxWQpU9sbs22+nRKyB9YrbABD6fDgpVMXBtjY3d6zT0303HGS027Uu1U0wVtoHYILNC+R984Z9CEagEW7ogs9Ky8MSBaDiju8jzliRJQQ4crsINqXB2iiFYL38jKyoWjqOq6yCGMyalF2bwoLoJCrP4JYkseGJP2zG6h06KLRvNp3YFR6qFWVl4PFbwdoqxxWAOsM4KsdocH2Uz1+wYbgKsWAO5ylqo0MEcfpyKiEK8a2oki4tbPZiQOe557XlqSrYpB9AbVQhfSKkaibfdigzKBci7bRKA5F9+wwpdXr5iWAG3eIbIO8upbfQ7beKDHjjG02uV6CxvYU7vcAoP+FVZrofzljQ9YCkXJ5VdrbyNxPHnkc9geMTruCSa7lHU6TWLJI+yQBgq2V3VxzQFd8Z+qSIrExA0pvuCCoYWQw77j4zsIesgI3rHaV/WY+VUeLKliOD5/yxtT1CBgQ0iMLPDkEVyP6lNj/wA5OTRWHpnKdO+pAkEDNHISI4yWteSFUbzY7Ejz85paj68hCl9j2oJ27UHjiiGNWeOe1ZpQdD07bmBFNtYKkm1IlVFXaiq1AcWf3zH1/wBKQOXANBjRopZAHYkDk5eVsmmirqfqZJLZ43enJChkVdguqajRoAkV/i5yhqdeFPqlFoIwpZbtxQU0B7eK5/fNR/ppDbLMqizwFQqCRRHe/wCLzO6j06FI9v4uNN9d1O1gp94G37AcH/XBMW/If05rNUsbo6kMzuF9u/aSjnhUBoBqPuIFDvnWapw2n2+sqO8ZCvY3bgN5NAg3SnyOxzjJJdhXbOEJbYGiJQupuiDtAPcqbPn9szTLGXiNjckpdq4faAV88s1i7P8AGG2GSSo6LTzaxElrUkxoFMTSRhlcSu4LLIHJJXavJJ7kEec7DX+qYo/TdY3pC5pnBHpkOoIq+Td2O1/bPPNPq2ViYpZQjHhQxSr4/UaBJs8jvXN5FPqm/KQXSyEb1kYbRtarIOwHcR/Njzg7bHkkj0/SkFAAzPXFkck/JxtVq441LuQAoLHmztBAvaOTyQO3nPNjbIqHdQH9EgB3eXHpn9xzZon75HotS2mm04WJQVMn9IMrezy49xHusLdXXkYJJsbmbkutV5C67XUsxUq1kE3e4GqNg1+2DFr908S7FFSA25JY7VINCrLf6ZdHVdE+9isqswAk9gYOUDAEUbDgEDdfgfGY+s6hp4p4DpxIpeXfIJEcoNkcq7lFlmoztwO9DKUk9CtI7aaHcu1qdfhgCOfscx+ofSull/pZDVAxnb+3tNr8+Mp9M+p9zbZZEok7SyyIwAHZhVCzZUk/Ay7B15ZN3pIHKna43GwdqtYFXt9xF/IOJWFxZz2r+hGF+lIjUKAdWiYcjjelqefkDjKeiGqjEiqrKI1NiORiCd1MqoOGY97NHvyM7DqfW4tPGkswb3bFbYBwzBjXJ+zDj4zFgnRZWIa1llVYyLs73Cihd37gOe1H4wlJ12KjCLfc5nX7pPz2Dl2Itdm00q7SHA5LE1RA8NfjKsel4HtkN2NgVmquwZSoPYZ6T7j8mz5vx2JB/wBMr6h9oLsqgAMW4ojb4Ncn+Mhc3tGj4Ps4eMyVwkoHx6cvGLO5ZmHG1v8A+p/7NWLH1oi6EvYMunlijZvCByCGVyQQ3s2Civjycxn1syovG5QoDADgi7O1gL83zyftkvS/pyAlg7algSDGG2xuYhGxJJDWw3FBwBR4oi8udf8Ap+L1dOiJ+WqfneI3IKt7uSSxQWRXnxeGKIptFcyNIoLiPmwbkVWogU/N8ntX27ZLptPpYhzqZDzQpt53N7QQpWrNUL+c1/Shi9qacE/mbVZFGyGYilB5QqNl8m+R85mxmNC6NG4j272Cw+mrsxWnFsCxVwpG0C6sDgHFSCihrZJI3U7ZiqLQ3fllmHG0Mf8A4zdG+3Yjvl1uoxAhreRgAAvsUciiVcjkGjwQf0n9sCbp0C2DIfUljVkWZmLMCw2q6tdqGsfq/qPIwoun1KWKnn9FuoNpaqAEY0hLWG7AXdY2kKmTSdSJi3RwoagkmLbhIsapbbG2Ld0C20/A/nM105Yq00aqSBuU7kO3ajCT2sbBBoAkZpSaQIWlBZWjvcFKtvtbMZccge4qb44JxtXqI5EjWzKUV422lPaALHYBSCwq6qo64vEqQ2jLg1PpkvYXczKYy3PNuFYMhpT8/uB3zUgcGmjMhDgEMwBU3z7RwRYsCuOPnnIYYYpX3KBsWxskRwR2uqX54+MpiRqHp8KncKCocE3QobuB4I74nTIujZglYbiySI1tt3Deu0MANnAsHtz83fGV+twLJy6m/dTG3VRt3VtBHFAHz83lMav07UMwDUCAKvdZs/4jdHxVHJeny7UCb2YULokIoUkkiNTXjlTwefBxV5Hl4MnUQOpFDet0CgJDdwdpHYnggE+D3yOUSRkMgc8E0QrfKkA9v9cuwQoC6emI7Nrs3V7TuUjaaB71/bIX0TFyBGSSfbQoU3cgAg33OXZm0FN1CSQlWNWf0AOopSCBxzd3wb/txgGRlXYFIYcBrtTz71Ncj+57dhko6eo3cKvlgZJIr29xvANHjzx983ejxadWBnjG3bZif1p6a1IUAbQaF+4t3HY3eGvYHOSzswNRW1G1XdtAUfNWe1jnm8PTzwOFvS3dW/4h0tr5sema781kOt6Vt3EU8QcMoKFSoMhO0JZPANAA/wCWQxaxgP8A4oE3jglJd4rk0btR2HY4JLwFFiFTE25BIu7gpv8A0juPdwGA4G7i6+9ZJqNe57REgcUStHtyTW4C67d6x0Qelt9NFMgKsY/0VySoBN0QAeQBfnKg6ZGhQFIZCQ28szHeCTtG0f1g/ueB8Y1Q6LiyqoLFSzgAC4zQBNuaHG2lAvmuT3wT0yJk4lVgpA90TO1t72ClmDMea4Pj+cowEMwEZjsk9nkZmoUzDiwe9/Y98tSdMKqbXZ7d6ttk9JbFCyVoLtJs9+cKAOFD+bbKpjJXc0IBtrCKrbibNAizhrro2VGWKhuUOtMTu29gEZf8JINcWSSe+T6XpbuPTZqiFOGA3iyCqiMEe8EgCvHGP0nTrFIwhnKNHujLKvpkstiWNlpqoDn7CxV4WOmMurSaRaSSHYRvA3KhA7q7GwrdvIPnziiAjmUuY3HpsAAbYMSNpVq4FD7nj98ty6ETMySxPqEK+oWExkq/awTc27cpK9+fscyYelRqTuZqBZDcke8FTQDR8Ub7jg2KvGN2TPO1MFMTBgAoO3gX7t7LW47boUKsd++A4gkZWZTvW9v5zALu7kKR348fGV5ulqBaTR0DZvg+Ftub3EqSBRFEeMUem9w9RoxVvxZKWL9w9tfvz98egNH8NDKA0jTRuQAwUggfHg8H+LGLSdI08Sn1JELl2ZmEbgWyr7Uo7uw7HubwtJ0+SMKQV9M0TLQ3rQNNuZieLJqivxd4Oh0cYeQjVUzp+ZtBJLA02xShB88AXYyfFDordQjQKJBqpSqEMsZgMhRq87iWHANlu24ZW1GrWVopF1QCJIJnL1QZaKAgCibrj98tHpcsS7/x0fpheGb1C5AFk+ntuhXPPNnLEWoiVlePVqJI6pvTJHu5ZEK/0leOx7gHscqxUxabrpIOyaNlHll2j7kNf7ZV69qtRLp5EVImEgUko6e33qQQLHfIuo6GCmn9zqyqaiQwqXN7lEd2eCp4FXdkVmZq+mdyscpQVtdo05FA3vscGz85KhFDc5HQrNrKG2AAbVAoyt2AHffziynp+i6jaKljQVYVmO4A/NEjGycYD6kjoF6iiABneym0By0wVt4qyw8BSBQAO82O2ZsuvRe5klO4kEvSq/vVKTZ4tW/f5rl8WKLBtkunYxyCQ72jdTtRpCQJAgbcpAG3gN3B+1ZVMwlZXffTlTHCG3xs5Pup39yLXNHgVQxYsadoTZq6PqgcPt07FY32MBLTIu02VZj3JJAoe0E5lP1egn4YMq0oBNF9qqGVZGPJr3fprg0bxYsfkTkxdS6qzKRXsLEMQQA27mmUqWK83V14rK05jVluJ7K0SHB7eVJPt8cDsD/ZsWNoTYR1T9qY2RQ3iiAvmxZIq+e/nvhw6sKnIAIFC+ByOLC8A/sMWLIpUSmDNqYmAVo0C8BKMhPn2sfgjz3G0c46ajaAAgVhe4IeCP5HuNeTixYrBMkXXbaBBU/qv2kMLN8eKw4tXDE7F4PWO6gXb3C+CDxtI5NccYsWW0UmUZ1heIRxeohWSQhtyn2sytsKleQo4HPnKUekW3p5DGXoD2hlG8FRv72e1geDixZol3JsvdP6vFpXNQs5ZFS5ZA43e47+3BNgV2pR5vNxPqWJlDnRqRRogpRK7dwoiwbrGxY8FVlKTMtupRyRNCNMqK117yZb3b+Ja8fB4oAYtLq0jl3rYIRUCuS+wJZJU13Nnz5xYsgRMPqGKLfJFHEJD79yo4Zy+0MAz2VBpbHANE+eaeu+s5Zo5I3UbHtH/byoINgf3+2LFlKKYnJl5eu6hYYQCiRlkjTaN17RdMDyB2/fMvWfULuSGkYklnk5oFma7Wha/FG+1YsWS4oJSZUj6kyyKE9tVbG2JN3Z5s88ZHqdbsk3qFWRuSwVebNmzVnmjzjYslIi9FrokvqusZAZSQpvjgNRPHerJo/PHjOgnXRRld/J5oXIaXzzt5v74+LBLZrx9id9ToyxtnLfd5jweCAa45vtln/lKUpWIfIb1ZQavwLxYsTNVRVll0aE2gVlJBpp2NeQSe/Nf3zK1HW9JTCOAF6JFl14PtXt2r7Y+LKiiGzCG6/1stVdMxoEXwDx96Hzh6jUuQrGRlIPNEkMPDFfHgcfOLFhZmVW5NlLPySpP9yLxYsWXYrP/9k="
+              alt="Conformación del grupo janeriano"
+              class="historia-img"
+            />
+            <div class="historia-img-overlay">
+              <i class="fa-solid fa-compass fa-2x"></i>
+              <span>Explorar Talarn</span>
+            </div>
+          </div>
+        </a>
+        <div class="historia-texto">
+          <h3 class="historia-subtitulo">Conformación del grupo janeriano</h3>
+          <p>
+            Conocé cómo está conformado el grupo janeriano y descubrí más sobre esta parte importante de nuestra historia y comunidad educativa.
+          </p>
+          <a href="maxiyjuan/index.html" class="btn btn-historia">
+            <i class="fa-solid fa-compass"></i> Explorar Talarn
           </a>
         </div>
       </div>
