@@ -1,348 +1,1243 @@
-// script.js
+/* style.css */
 
-// =============================================
-// NAV TOGGLE
-// =============================================
-const menuToggleBtn = document.getElementById("menuToggle");
-const navLinks = document.getElementById("navLinks");
+:root {
+  --blue-intense: #0057b7;
+  --red-intense: #d90429;
+  --green-intense: #007a33;
+  --dark-gray: #1e1e1e;
+  --gray-glass: rgba(30, 30, 30, 0.8);
+  --text-light: #eee;
+  --text-dark: #222;
+  --accent-glow-blue: #2978ff;
+  --accent-glow-red: #ff294f;
+  --accent-glow-green: #2fed7b;
+}
 
-menuToggleBtn.addEventListener("click", () => {
-  navLinks.classList.toggle("active");
-  const icon = menuToggleBtn.querySelector("i");
-  icon.classList.toggle("fa-bars");
-  icon.classList.toggle("fa-xmark");
-});
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
-navLinks.querySelectorAll("a").forEach(link => {
-  link.addEventListener("click", () => {
-    navLinks.classList.remove("active");
-    const icon = menuToggleBtn.querySelector("i");
-    icon.classList.add("fa-bars");
-    icon.classList.remove("fa-xmark");
-  });
-});
+body {
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+  background: #121212;
+  color: var(--text-light);
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  line-height: 1.5;
+}
 
-window.addEventListener("resize", () => {
-  if (window.innerWidth > 900 && navLinks.classList.contains("active")) {
-    navLinks.classList.remove("active");
-    const icon = menuToggleBtn.querySelector("i");
-    icon.classList.add("fa-bars");
-    icon.classList.remove("fa-xmark");
+.container {
+  width: min(92%, 1100px);
+  margin-inline: auto;
+  padding-block: 1rem;
+}
+
+/* Glassmorphism */
+.glass {
+  background: var(--gray-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 0.8rem;
+  box-shadow:
+    0 0 8px rgba(0, 0, 0, 0.4),
+    0 8px 24px rgba(0, 0, 0, 0.5);
+  padding: 1.5rem;
+  margin-bottom: 2.5rem;
+  border: 1px solid rgba(255 255 255 / 0.07);
+}
+
+/* =============================================
+   NAVBAR
+   ============================================= */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 9999;
+  border-bottom: 1px solid rgba(255 255 255 / 0.1);
+  font-weight: 700;
+  transition: background 0.3s ease;
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 0.8rem;
+  flex-wrap: nowrap;
+  gap: 0.5rem;
+}
+
+.logo {
+  font-size: clamp(0.95rem, 3.5vw, 1.5rem);
+  color: var(--text-light);
+  text-decoration: none;
+  letter-spacing: 0.12em;
+  user-select: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  text-shadow:
+    0 0 8px var(--accent-glow-blue),
+    0 0 15px var(--accent-glow-blue);
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.4rem;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li a {
+  color: var(--text-light);
+  text-decoration: none;
+  font-size: 0.92rem;
+  position: relative;
+  transition: color 0.3s ease;
+  white-space: nowrap;
+}
+
+.nav-links li a::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--blue-intense);
+  transition: width 0.3s ease;
+  border-radius: 4px;
+}
+
+.nav-links li a:hover,
+.nav-links li a:focus-visible {
+  color: var(--blue-intense);
+}
+
+.nav-links li a:hover::after,
+.nav-links li a:focus-visible::after {
+  width: 100%;
+}
+
+/* Mobile nav open state */
+.nav-links.active {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: rgba(18, 18, 18, 0.97);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 1rem 1.5rem 1.5rem;
+  gap: 1rem;
+  border-bottom: 1px solid rgba(255 255 255 / 0.1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+  z-index: 9998;
+}
+
+.nav-links.active li a {
+  font-size: 1.1rem;
+  padding: 0.4rem 0;
+  display: block;
+}
+
+/* Menu toggle (mobile) */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text-light);
+  font-size: 1.6rem;
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.3s ease;
+  padding: 0.3rem 0.5rem;
+  flex-shrink: 0;
+}
+
+.menu-toggle:focus-visible {
+  outline-offset: 2px;
+  outline: 2px solid var(--blue-intense);
+}
+
+/* =============================================
+   HERO SECTION
+   ============================================= */
+.hero-section {
+  position: relative;
+  height: 80vh;
+  min-height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--text-light);
+  overflow: hidden;
+  margin-top: 56px;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: -2;
+}
+
+.hero-bg .hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  filter: brightness(0.48);
+}
+
+.hero-bg .overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    160deg,
+    rgba(0, 57, 140, 0.45) 0%,
+    rgba(180, 0, 30, 0.25) 50%,
+    rgba(0, 80, 40, 0.35) 100%
+  );
+  animation: overlayShift 14s infinite alternate ease-in-out;
+  z-index: 1;
+}
+
+@keyframes overlayShift {
+  0%   { opacity: 0.7; filter: hue-rotate(0deg); }
+  100% { opacity: 0.9; filter: hue-rotate(30deg); }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding-inline: 1rem;
+}
+
+.hero-content h1 {
+  font-size: clamp(2.2rem, 7vw, 6rem);
+  letter-spacing: 0.2em;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+  text-shadow:
+    0 0 20px var(--accent-glow-blue),
+    0 0 40px var(--accent-glow-red),
+    0 2px 6px rgba(0,0,0,0.8);
+}
+
+.hero-content p {
+  font-size: clamp(1rem, 2vw, 2rem);
+  font-weight: 400;
+  text-shadow:
+    0 0 8px var(--accent-glow-green),
+    0 2px 4px rgba(0,0,0,0.7);
+}
+
+/* =============================================
+   PUNTOS / RANKING
+   ============================================= */
+.puntos-section h2 {
+  font-weight: 700;
+  font-size: clamp(1.6rem, 3vw, 2.5rem);
+  margin-bottom: 1rem;
+  text-align: center;
+  text-shadow: 0 0 8px var(--blue-intense);
+}
+
+.puntos-cards {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.puntos-card {
+  flex: 1 1 240px;
+  max-width: 100%;
+  background: #222;
+  border-radius: 1rem;
+  padding: 1.25rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+  cursor: default;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.puntos-card:hover,
+.puntos-card:focus-within {
+  transform: translateY(-8px);
+  box-shadow:
+    0 16px 30px rgba(0, 0, 0, 0.9),
+    0 0 18px currentColor;
+}
+
+.team-header {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 1rem;
+  color: var(--text-light);
+  text-shadow: 0 0 12px currentColor;
+  flex-wrap: nowrap;
+}
+
+.team-header h3 {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  margin: 0;
+  word-break: break-word;
+}
+
+.points-number {
+  font-size: clamp(2.5rem, 6vw, 3.5rem);
+  font-weight: 900;
+  text-align: center;
+  margin-bottom: 1rem;
+  letter-spacing: 0.1em;
+  color: var(--text-light);
+  user-select: none;
+}
+
+.points-bar-container {
+  width: 100%;
+  height: 15px;
+  background: #333;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.points-bar {
+  height: 100%;
+  border-radius: 12px 0 0 12px;
+  transition: width 1.5s ease;
+}
+
+.cervera { color: var(--blue-intense); }
+.cervera-bar {
+  background: linear-gradient(90deg, #0041a3, #296de8);
+  box-shadow:
+    0 0 12px var(--accent-glow-blue),
+    0 0 18px var(--accent-glow-blue) inset;
+}
+
+.talar { color: var(--red-intense); }
+.talar-bar {
+  background: linear-gradient(90deg, #b40010, #e8293b);
+  box-shadow:
+    0 0 12px var(--accent-glow-red),
+    0 0 18px var(--accent-glow-red) inset;
+}
+
+.valdora { color: var(--green-intense); }
+.valdora-bar {
+  background: linear-gradient(90deg, #005a23, #2ed97a);
+  box-shadow:
+    0 0 12px var(--accent-glow-green),
+    0 0 18px var(--accent-glow-green) inset;
+}
+
+/* =============================================
+   DESAFÍO DEL DÍA
+   ============================================= */
+.desafio-section h2 {
+  font-weight: 700;
+  font-size: clamp(1.4rem, 3.5vw, 2.7rem);
+  margin-bottom: 1rem;
+  text-align: center;
+  text-shadow: 0 0 10px var(--red-intense);
+}
+
+.desafio-dia-label {
+  text-align: center;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #f0c040;
+  margin-bottom: 0.5rem;
+  opacity: 0.85;
+}
+
+.desafio-content {
+  max-width: 600px;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.pregunta {
+  font-size: clamp(1.05rem, 2.5vw, 1.5rem);
+  font-weight: 700;
+  background: var(--dark-gray);
+  padding: 0.85rem 1.35rem;
+  border-radius: 0.7rem;
+  text-align: center;
+  box-shadow: 0 0 12px var(--red-intense);
+  user-select: none;
+}
+
+/* =============================================
+   FORMULARIO
+   ============================================= */
+form {
+  background: #121212dd;
+  padding: 1rem 1.25rem 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 10px #000;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+label {
+  margin-bottom: 0.3rem;
+  font-weight: 600;
+  user-select: none;
+  color: var(--text-light);
+}
+
+input[type="text"],
+select {
+  padding: 0.65rem 0.8rem;
+  border-radius: 0.4rem;
+  border: none;
+  font-size: 1rem;
+  font-family: "Montserrat", sans-serif;
+  background: #1e1e1e;
+  color: var(--text-light);
+  transition: box-shadow 0.3s ease;
+  outline-offset: 2px;
+  outline-color: transparent;
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+input[type="text"]:focus,
+select:focus {
+  outline-color: var(--blue-intense);
+  box-shadow: 0 0 12px var(--blue-intense);
+  background: #111;
+  color: var(--text-light);
+}
+
+select option {
+  background: #1e1e1e;
+  color: var(--text-light);
+}
+
+/* Equipo asignado automáticamente */
+.equipo-display {
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-align: center;
+  padding: 0.5rem 0.8rem;
+  border-radius: 0.5rem;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  min-height: 2rem;
+  letter-spacing: 0.06em;
+  transition: color 0.3s ease, border-color 0.3s ease;
+  display: none;
+}
+
+.equipo-display.visible {
+  display: block;
+}
+
+.respuestas-group {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  user-select: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.respuestas-group legend {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--text-light);
+  width: 100%;
+}
+
+.respuestas-group label {
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0.5rem 0.9rem;
+  border-radius: 0.5rem;
+  background: #222;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  flex: 1 1 120px;
+  text-align: center;
+  min-width: 100px;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+input[type="radio"]:checked + label {
+  background: var(--team-color, var(--blue-intense));
+  box-shadow:
+    0 0 14px var(--team-glow, var(--accent-glow-blue)),
+    0 0 22px var(--team-glow, var(--accent-glow-blue)) inset;
+  color: #fefefe;
+}
+
+.respuestas-group label:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fefefe;
+}
+
+.btn-primary {
+  margin-top: 1rem;
+  padding: 0.9rem 1.5rem;
+  background: var(--red-intense);
+  border: none;
+  border-radius: 0.6rem;
+  font-size: 1.1rem;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  user-select: none;
+  box-shadow: 0 0 18px var(--accent-glow-red);
+  transition: background 0.3s ease, transform 0.2s ease;
+  align-self: center;
+  width: 100%;
+  max-width: 300px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn-primary:hover,
+.btn-primary:focus-visible {
+  background: #e3031a;
+  box-shadow:
+    0 0 24px var(--accent-glow-red),
+    inset 0 0 8px #ff3852;
+  transform: translateY(-2px);
+  outline: none;
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.desafio-feedback {
+  margin-top: 1rem;
+  text-align: center;
+  font-weight: 700;
+  font-size: clamp(0.95rem, 2.5vw, 1.2rem);
+  min-height: 2.8rem;
+  user-select: none;
+}
+
+.desafio-feedback.success {
+  color: #4caf7d;
+  background: rgba(76, 175, 125, 0.12);
+  border: 1px solid rgba(76, 175, 125, 0.3);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  margin-top: 1rem;
+  text-shadow: 0 0 14px var(--accent-glow-green);
+  animation: popScale 0.5s ease forwards;
+}
+
+.desafio-feedback.error {
+  color: #f85c5c;
+  background: rgba(248, 92, 92, 0.12);
+  border: 1px solid rgba(248, 92, 92, 0.3);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  margin-top: 1rem;
+  text-shadow: 0 0 14px var(--accent-glow-red);
+  animation: popScale 0.5s ease forwards;
+}
+
+.desafio-feedback.info {
+  color: #f0c040;
+  background: rgba(240, 192, 64, 0.10);
+  border: 1px solid rgba(240, 192, 64, 0.3);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  margin-top: 1rem;
+  animation: popScale 0.5s ease forwards;
+}
+
+@keyframes popScale {
+  0%   { transform: scale(0.9); opacity: 0; }
+  100% { transform: scale(1);   opacity: 1; }
+}
+
+/* =============================================
+   CALENDARIO
+   ============================================= */
+.calendario-section h2 {
+  font-weight: 700;
+  font-size: clamp(1.6rem, 3vw, 2.5rem);
+  margin-bottom: 1.5rem;
+  color: var(--text-light);
+  text-align: center;
+  text-shadow: 0 0 8px var(--green-intense);
+}
+
+.calendario-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.calendario-list li {
+  background: #1c1c1c;
+  border-radius: 0.75rem;
+  padding: 0.9rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+  border-left: 3px solid var(--green-intense);
+  cursor: default;
+  transition: box-shadow 0.3s ease, transform 0.2s ease, border-color 0.3s ease;
+  user-select: none;
+  width: 100%;
+  flex-wrap: nowrap;
+}
+
+.calendario-list li:hover {
+  box-shadow: 0 4px 20px rgba(0, 122, 51, 0.35);
+  transform: translateX(4px);
+  border-color: var(--accent-glow-green);
+}
+
+/* Fecha badge */
+.cal-date-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #005a23, #2ed97a22);
+  border: 1px solid rgba(46, 217, 122, 0.25);
+  border-radius: 0.6rem;
+  min-width: 52px;
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+}
+
+.cal-date-badge.cal-deadline {
+  background: linear-gradient(135deg, #7a0010, #ff294f22);
+  border-color: rgba(255, 41, 79, 0.3);
+}
+
+.cal-day {
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: var(--accent-glow-green);
+  line-height: 1;
+}
+
+.cal-date-badge.cal-deadline .cal-day {
+  color: var(--accent-glow-red);
+}
+
+.cal-month {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #aaa;
+  text-transform: uppercase;
+}
+
+/* Evento info */
+.cal-event-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.cal-icon {
+  font-size: 1.15rem;
+  color: var(--green-intense);
+  flex-shrink: 0;
+  width: 1.4rem;
+  text-align: center;
+}
+
+.cal-deadline-icon {
+  color: var(--accent-glow-red);
+}
+
+.cal-event-name {
+  font-weight: 600;
+  font-size: clamp(0.88rem, 2vw, 0.98rem);
+  color: var(--text-light);
+  line-height: 1.35;
+  word-break: break-word;
+}
+
+/* =============================================
+   EVENTO REALIZADO — badge y estilos
+   ============================================= */
+.cal-item-realizado {
+  border-left: 3px solid #555 !important;
+  background: #161616 !important;
+  opacity: 0.75;
+}
+
+.cal-item-realizado:hover {
+  box-shadow: 0 4px 16px rgba(80, 80, 80, 0.3) !important;
+  transform: translateX(2px) !important;
+  border-color: #777 !important;
+}
+
+.cal-badge-realizado {
+  background: linear-gradient(135deg, #2a2a2a, #3a3a3a) !important;
+  border-color: rgba(120, 120, 120, 0.3) !important;
+}
+
+.cal-badge-realizado .cal-day {
+  color: #888 !important;
+}
+
+.cal-icon-realizado {
+  color: #4caf7d !important;
+}
+
+.cal-item-realizado .cal-event-name {
+  color: #888;
+  text-decoration: line-through;
+  text-decoration-color: #555;
+}
+
+.cal-badge-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 2rem;
+  padding: 0.2rem 0.6rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.realizado-tag {
+  background: rgba(76, 175, 125, 0.15);
+  color: #4caf7d;
+  border: 1px solid rgba(76, 175, 125, 0.35);
+}
+
+/* =============================================
+   VALOR DEL DÍA
+   ============================================= */
+.valor-section { text-align: center; }
+
+.valor-section h2 {
+  font-weight: 700;
+  font-size: clamp(1.6rem, 3vw, 2.5rem);
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 9px var(--accent-glow-blue);
+}
+
+.valor-name {
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  font-weight: 900;
+  color: var(--blue-intense);
+  text-shadow: 0 0 16px var(--accent-glow-blue);
+  letter-spacing: 0.1em;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.valor-frase {
+  font-style: italic;
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  max-width: 650px;
+  margin-inline: auto;
+  user-select: none;
+  color: var(--text-light);
+  text-shadow: 0 0 8px rgba(255 255 255 / 0.3);
+  padding-inline: 0.5rem;
+}
+
+/* =============================================
+   GALERÍA
+   ============================================= */
+.galeria-section h2 {
+  font-weight: 700;
+  font-size: clamp(1.6rem, 3vw, 2.5rem);
+  margin-bottom: 1rem;
+  text-align: center;
+  text-shadow: 0 0 8px var(--red-intense);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.8rem;
+}
+
+.gallery-item {
+  border-radius: 0.8rem;
+  overflow: hidden;
+  box-shadow: 0 0 14px rgba(0, 0, 0, 0.9);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: #222;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  aspect-ratio: 4/3;
+  user-select: none;
+  pointer-events: none;
+  border-radius: 0.8rem;
+}
+
+.gallery-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 22px var(--accent-glow-red);
+}
+
+/* =============================================
+   NOTICIAS
+   ============================================= */
+.noticias-section h2 {
+  font-weight: 700;
+  font-size: clamp(1.6rem, 3vw, 2.5rem);
+  margin-bottom: 1.25rem;
+  text-align: center;
+  text-shadow: 0 0 10px var(--green-intense);
+}
+
+.noticias-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
+.noticia-card {
+  background: linear-gradient(135deg, #1a1a2e 0%, #1e1e1e 60%);
+  padding: 1.75rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+  cursor: default;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(0, 122, 51, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.noticia-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--green-intense), var(--accent-glow-green));
+  border-radius: 4px 0 0 4px;
+}
+
+.noticia-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 28px var(--accent-glow-green);
+}
+
+.noticia-card h3 {
+  margin: 0;
+  font-size: clamp(1.1rem, 3vw, 1.4rem);
+  font-weight: 700;
+  color: var(--text-light);
+  line-height: 1.3;
+}
+
+.noticia-card p {
+  font-size: clamp(0.9rem, 2vw, 1rem);
+  color: #ccc;
+  line-height: 1.65;
+  flex-grow: 1;
+  margin: 0;
+}
+
+.noticia-card time {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--green-intense);
+  text-align: right;
+}
+
+/* =============================================
+   HISTORIA DE ANA MARÍA JANER
+   ============================================= */
+.historia-section h2 {
+  font-weight: 700;
+  font-size: clamp(1.6rem, 3vw, 2.5rem);
+  margin-bottom: 1.5rem;
+  text-align: center;
+  text-shadow: 0 0 10px var(--accent-glow-blue);
+}
+
+.historia-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.historia-img-link {
+  display: block;
+  text-decoration: none;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.historia-img-wrapper {
+  position: relative;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 0 24px rgba(0, 87, 183, 0.4);
+  cursor: pointer;
+}
+
+.historia-img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.45s ease, filter 0.45s ease;
+  filter: brightness(0.85);
+}
+
+.historia-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    160deg,
+    rgba(0, 57, 140, 0.55) 0%,
+    rgba(0, 0, 0, 0.45) 100%
+  );
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  padding: 1.5rem;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.historia-img-wrapper:hover .historia-img-overlay,
+.historia-img-wrapper:focus-within .historia-img-overlay {
+  opacity: 1;
+}
+
+.historia-img-wrapper:hover .historia-img {
+  transform: scale(1.05);
+  filter: brightness(0.65);
+}
+
+.historia-img-wrapper:hover {
+  box-shadow: 0 0 36px var(--accent-glow-blue);
+}
+
+.historia-texto {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.historia-texto p {
+  font-size: clamp(0.95rem, 2vw, 1.05rem);
+  color: #ddd;
+  line-height: 1.75;
+  margin: 0;
+}
+
+.historia-texto strong {
+  color: #fff;
+}
+
+.btn-historia {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  align-self: flex-start;
+  margin-top: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, var(--blue-intense), #1a6fd6);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
+  border-radius: 0.6rem;
+  text-decoration: none;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 0 14px rgba(0, 87, 183, 0.45);
+}
+
+.btn-historia:hover,
+.btn-historia:focus-visible {
+  transform: translateY(-3px);
+  box-shadow: 0 0 26px var(--accent-glow-blue);
+}
+
+/* Segunda tarjeta de Historia */
+.historia-content--second {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255 255 255 / 0.08);
+}
+
+.historia-subtitulo {
+  margin: 0 0 0.75rem;
+  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+  font-weight: 700;
+  color: var(--text-light);
+  line-height: 1.3;
+  text-shadow: 0 0 10px rgba(41, 120, 255, 0.3);
+}
+
+/* Botón integrado en tarjeta Historia (mantenido por compatibilidad, no usado) */
+.historia-footer-btn {
+  display: none;
+}
+
+.btn-explorar {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .historia-content {
+    grid-template-columns: 1fr;
   }
-});
 
-// =============================================
-// MÚSICA DE FONDO
-// =============================================
-const bgMusic = document.getElementById("bgMusic");
-
-if (bgMusic) {
-  bgMusic.volume = 0.07;
-}
-
-function tryPlayMusic() {
-  if (!bgMusic) return;
-  bgMusic.play().catch(() => {
-    // Autoplay bloqueado por el navegador
-  });
-}
-
-tryPlayMusic();
-
-function onFirstInteraction() {
-  tryPlayMusic();
-  document.removeEventListener("click", onFirstInteraction);
-  document.removeEventListener("keydown", onFirstInteraction);
-  document.removeEventListener("touchstart", onFirstInteraction);
-}
-document.addEventListener("click", onFirstInteraction);
-document.addEventListener("keydown", onFirstInteraction);
-document.addEventListener("touchstart", onFirstInteraction, { passive: true });
-
-// =============================================
-// ARRAY DE 30 PREGUNTAS JANERIANAS
-// =============================================
-const preguntas = [
-  { dia: 1,  pregunta: "¿En qué país nació Ana María Janer?",                              opciones: ["España", "Italia", "Francia"],                                            correcta: "España" },
-  { dia: 2,  pregunta: "¿Cuál era uno de los valores principales de Ana María Janer?",    opciones: ["Solidaridad", "Orgullo", "Ambición"],                                     correcta: "Solidaridad" },
-  { dia: 3,  pregunta: "¿A qué dedicó su vida Ana María Janer?",                          opciones: ["La educación y ayuda a los demás", "La política", "El comercio"],         correcta: "La educación y ayuda a los demás" },
-  { dia: 4,  pregunta: "¿Qué buscaba transmitir Ana María Janer?",                        opciones: ["Amor y servicio", "Competencia", "Fama"],                                 correcta: "Amor y servicio" },
-  { dia: 5,  pregunta: "¿Qué congregación fundó Ana María Janer?",                        opciones: ["Hermanas de la Sagrada Familia de Urgell", "Salesianos", "Jesuitas"],     correcta: "Hermanas de la Sagrada Familia de Urgell" },
-  { dia: 6,  pregunta: "¿Qué valor caracterizaba a Ana María Janer?",                     opciones: ["Empatía", "Egoísmo", "Indiferencia"],                                     correcta: "Empatía" },
-  { dia: 7,  pregunta: "¿A quiénes ayudaba principalmente Ana María Janer?",              opciones: ["A los necesitados", "A los soldados", "A los empresarios"],               correcta: "A los necesitados" },
-  { dia: 8,  pregunta: "¿Qué promovía Ana María Janer mediante la educación?",            opciones: ["Valores y formación", "Competencia extrema", "Desigualdad"],              correcta: "Valores y formación" },
-  { dia: 9,  pregunta: "¿Qué actitud tenía Ana María Janer frente a las dificultades?",  opciones: ["Perseverancia", "Abandono", "Indiferencia"],                              correcta: "Perseverancia" },
-  { dia: 10, pregunta: "¿Qué representa el espíritu janeriano?",                          opciones: ["Servicio y comunidad", "Orgullo individual", "Competencia negativa"],     correcta: "Servicio y comunidad" },
-  { dia: 11, pregunta: "¿Qué valor enseñaba Ana María Janer a los jóvenes?",              opciones: ["Respeto", "Violencia", "Egoísmo"],                                        correcta: "Respeto" },
-  { dia: 12, pregunta: "¿Cuál era una característica de Ana María Janer?",                opciones: ["Humildad", "Soberbia", "Vanidad"],                                        correcta: "Humildad" },
-  { dia: 13, pregunta: "¿Qué buscaba lograr Ana María Janer mediante sus obras?",         opciones: ["Ayudar y educar", "Ganar dinero", "Conseguir fama"],                      correcta: "Ayudar y educar" },
-  { dia: 14, pregunta: "¿Qué importancia tenía la fe para Ana María Janer?",              opciones: ["Era fundamental en su vida", "No era importante", "La ignoraba"],         correcta: "Era fundamental en su vida" },
-  { dia: 15, pregunta: "¿Qué valor fortalece la convivencia según el espíritu janeriano?",opciones: ["Respeto", "Violencia", "Desinterés"],                                     correcta: "Respeto" },
-  { dia: 16, pregunta: "¿Qué promovía Ana María Janer en la comunidad?",                  opciones: ["La unión", "La división", "La rivalidad"],                               correcta: "La unión" },
-  { dia: 17, pregunta: "¿Cómo enfrentaba Ana María Janer los desafíos?",                  opciones: ["Con perseverancia", "Rindiéndose", "Ignorándolos"],                       correcta: "Con perseverancia" },
-  { dia: 18, pregunta: "¿Qué misión tenía Ana María Janer?",                              opciones: ["Educar y servir", "Competir", "Dirigir empresas"],                        correcta: "Educar y servir" },
-  { dia: 19, pregunta: "¿Qué demostraba Ana María Janer hacia los demás?",                opciones: ["Compasión", "Indiferencia", "Superioridad"],                              correcta: "Compasión" },
-  { dia: 20, pregunta: "¿Qué importancia tiene ayudar al prójimo?",                       opciones: ["Es un acto de solidaridad", "No tiene valor", "Genera problemas"],        correcta: "Es un acto de solidaridad" },
-  { dia: 21, pregunta: "¿Qué buscaba enseñar Ana María Janer además de conocimientos?",   opciones: ["Valores humanos", "Competencia agresiva", "Individualismo"],              correcta: "Valores humanos" },
-  { dia: 22, pregunta: "¿Qué actitud representa mejor el espíritu janeriano?",            opciones: ["Compañerismo", "Egoísmo", "Violencia"],                                  correcta: "Compañerismo" },
-  { dia: 23, pregunta: "¿Qué significa servir a los demás?",                              opciones: ["Ayudar con generosidad", "Buscar beneficio propio", "Ignorar necesidades"], correcta: "Ayudar con generosidad" },
-  { dia: 24, pregunta: "¿Qué valor promovía Ana María Janer en la educación?",            opciones: ["Inclusión", "Exclusión", "Discriminación"],                               correcta: "Inclusión" },
-  { dia: 25, pregunta: "¿Qué representa la solidaridad?",                                 opciones: ["Ayudar a otros", "Competir negativamente", "Pensar solo en uno mismo"],   correcta: "Ayudar a otros" },
-  { dia: 26, pregunta: "¿Qué actitud tenía Ana María Janer hacia los niños y jóvenes?",  opciones: ["Cariño y dedicación", "Desinterés", "Distancia"],                         correcta: "Cariño y dedicación" },
-  { dia: 27, pregunta: "¿Qué buscaba construir Ana María Janer en la sociedad?",          opciones: ["Una comunidad unida", "División", "Desigualdad"],                         correcta: "Una comunidad unida" },
-  { dia: 28, pregunta: "¿Qué valor ayuda a convivir mejor?",                              opciones: ["Empatía", "Violencia", "Orgullo"],                                        correcta: "Empatía" },
-  { dia: 29, pregunta: "¿Qué representa el Mes Janeriano?",                               opciones: ["Unión, valores y participación", "Competencia negativa", "Desorden"],     correcta: "Unión, valores y participación" },
-  { dia: 30, pregunta: "¿Qué enseñó Ana María Janer con su ejemplo?",                     opciones: ["Servicio y amor al prójimo", "Individualismo", "Indiferencia"],           correcta: "Servicio y amor al prójimo" }
-];
-
-// =============================================
-// ASIGNACIÓN AUTOMÁTICA DE EQUIPO POR DIVISIÓN
-// =============================================
-const divisionEquipoMap = {
-  "A": { equipo: "cervera", nombre: "Cervera",    color: "var(--blue-intense)",  glow: "var(--accent-glow-blue)"  },
-  "B": { equipo: "talar",   nombre: "Talarn",     color: "var(--red-intense)",   glow: "var(--accent-glow-red)"   },
-  "C": { equipo: "valdora", nombre: "Vall d'Ora", color: "var(--green-intense)", glow: "var(--accent-glow-green)" }
-};
-
-const divisionSelect = document.getElementById("division");
-const equipoInput    = document.getElementById("equipo");
-const equipoDisplay  = document.getElementById("equipo-display");
-const desafioForm    = document.getElementById("desafioForm");
-
-divisionSelect.addEventListener("change", () => {
-  const div  = divisionSelect.value.toUpperCase();
-  const info = divisionEquipoMap[div];
-
-  if (info) {
-    equipoInput.value = info.equipo;
-
-    equipoDisplay.textContent  = "Equipo: " + info.nombre;
-    equipoDisplay.style.color  = info.color;
-    equipoDisplay.style.borderColor = info.color;
-    equipoDisplay.classList.add("visible");
-
-    if (desafioForm) {
-      desafioForm.style.setProperty("--team-color", info.color);
-      desafioForm.style.setProperty("--team-glow",  info.glow);
-    }
-  } else {
-    equipoInput.value = "";
-    equipoDisplay.textContent = "";
-    equipoDisplay.classList.remove("visible");
-    if (desafioForm) {
-      desafioForm.style.removeProperty("--team-color");
-      desafioForm.style.removeProperty("--team-glow");
-    }
-  }
-});
-
-// =============================================
-// SISTEMA DE PUNTOS — puntajes oficiales actualizados
-// =============================================
-const POINTS_KEY = "mesJanerianoPuntos_v3";
-
-// Puntajes oficiales actualizados: Cervera=1000, Talarn=1300, Vall d'Ora=1200
-const PUNTAJES_OFICIALES = { cervera: 1000, talar: 1300, valdora: 1200 };
-
-function getPoints() {
-  let pts = null;
-  try {
-    pts = JSON.parse(localStorage.getItem(POINTS_KEY));
-  } catch (e) {
-    pts = null;
-  }
-
-  // Si no existen datos guardados, usar los valores oficiales actualizados
-  if (!pts || typeof pts !== "object") {
-    pts = { ...PUNTAJES_OFICIALES };
-    localStorage.setItem(POINTS_KEY, JSON.stringify(pts));
-    return pts;
-  }
-
-  // Garantizar que ningún equipo tenga menos que los valores oficiales mínimos
-  let changed = false;
-  if (pts.cervera < PUNTAJES_OFICIALES.cervera) { pts.cervera = PUNTAJES_OFICIALES.cervera; changed = true; }
-  if (pts.talar   < PUNTAJES_OFICIALES.talar)   { pts.talar   = PUNTAJES_OFICIALES.talar;   changed = true; }
-  if (pts.valdora < PUNTAJES_OFICIALES.valdora) { pts.valdora = PUNTAJES_OFICIALES.valdora; changed = true; }
-
-  // Si los tres son exactamente 0 (estado de reinicio), restaurar oficiales
-  if (pts.cervera === 0 && pts.talar === 0 && pts.valdora === 0) {
-    pts = { ...PUNTAJES_OFICIALES };
-    changed = true;
-  }
-
-  if (changed) localStorage.setItem(POINTS_KEY, JSON.stringify(pts));
-  return pts;
-}
-
-function updateUI(pts) {
-  const max = Math.max(pts.cervera, pts.talar, pts.valdora) || 1;
-  Object.entries({ cervera: pts.cervera, talar: pts.talar, valdora: pts.valdora }).forEach(([team, val]) => {
-    const card = document.querySelector(".puntos-card." + team);
-    if (!card) return;
-    card.querySelector(".points-number").textContent = val;
-    card.querySelector(".points-bar").style.width = ((val / max) * 100).toFixed(2) + "%";
-  });
-}
-
-// =============================================
-// CONTADOR DE DÍAS JANERIANOS
-// =============================================
-function getDiaJaneriano() {
-  const fecha = new Date();
-  const mes   = fecha.getMonth(); // 5 = junio
-  const dia   = fecha.getDate();
-  if (mes === 5) return dia;
-  return 0;
-}
-
-function renderDiaJaneriano() {
-  const el = document.getElementById("desafio-dia-numero");
-  if (!el) return;
-  const d = getDiaJaneriano();
-  el.textContent = d === 0 ? "Día 0" : "Día " + d;
-}
-
-// =============================================
-// PREGUNTA AUTOMÁTICA POR DÍA DEL MES
-// =============================================
-function getPreguntaHoy() {
-  const dia = new Date().getDate();
-  const idx = Math.min(dia, 30) - 1;
-  return preguntas[idx];
-}
-
-function renderPregunta() {
-  const preguntaHoy = getPreguntaHoy();
-
-  const preguntaEl = document.querySelector(".pregunta");
-  if (preguntaEl) preguntaEl.textContent = preguntaHoy.pregunta;
-
-  const fieldset = document.querySelector(".respuestas-group");
-  if (fieldset) {
-    fieldset.innerHTML = "<legend>Respuesta</legend>";
-    preguntaHoy.opciones.forEach(opcion => {
-      const id    = "resp_" + opcion.replace(/\s+/g, "_").replace(/[^a-zA-Z0-9_]/g, "");
-      const input = document.createElement("input");
-      input.type     = "radio";
-      input.name     = "respuesta";
-      input.value    = opcion;
-      input.required = true;
-      input.id       = id;
-
-      const label = document.createElement("label");
-      label.setAttribute("for", id);
-      label.textContent = opcion;
-
-      fieldset.appendChild(input);
-      fieldset.appendChild(label);
-    });
+  .historia-content--second {
+    grid-template-columns: 1fr;
   }
 }
 
-// =============================================
-// PARTICIPACIÓN DIARIA — UN ALUMNO UNA VEZ POR DÍA
-// =============================================
-const PARTICIPACION_KEY = "mesJanerianoParticipacion_v3";
-
-function getTodayKey() {
-  return new Date().toISOString().slice(0, 10);
+/* =============================================
+   FOOTER
+   ============================================= */
+.footer {
+  padding-block: 1rem;
+  border-top: 1px solid rgba(255 255 255 / 0.1);
+  text-align: center;
+  font-size: 0.9rem;
+  color: #999;
+  user-select: none;
 }
 
-function getAlumnoKey(nombre, curso, division) {
-  return (nombre.trim() + "|" + curso.trim() + "|" + division.trim()).toLowerCase() + "|" + getTodayKey();
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: min(92%, 1100px);
+  margin-inline: auto;
+  flex-wrap: wrap;
+  gap: 0.7rem;
 }
 
-function alumnoYaParticipoHoy(nombre, curso, division) {
-  try {
-    const data = JSON.parse(localStorage.getItem(PARTICIPACION_KEY) || "{}");
-    return !!data[getAlumnoKey(nombre, curso, division)];
-  } catch (e) {
-    return false;
+.footer-dev {
+  font-size: 0.82rem;
+  opacity: 0.6;
+  letter-spacing: 0.04em;
+  margin: 0;
+}
+
+.footer-dev strong {
+  opacity: 0.9;
+  color: #fff;
+}
+
+.footer-icons a {
+  color: #999;
+  margin-left: 1rem;
+  transition: color 0.3s ease;
+  text-decoration: none;
+}
+
+.footer-icons a:hover {
+  color: var(--blue-intense);
+  text-shadow: 0 0 8px var(--accent-glow-blue);
+}
+
+/* =============================================
+   SCROLLBAR
+   ============================================= */
+body::-webkit-scrollbar { width: 10px; }
+body::-webkit-scrollbar-track { background: #121212; }
+body::-webkit-scrollbar-thumb {
+  background-color: var(--blue-intense);
+  border-radius: 10px;
+  border: 2px solid #121212;
+}
+body::-webkit-scrollbar-thumb:hover { background-color: var(--red-intense); }
+
+/* =============================================
+   RESPONSIVE — TABLET 900px
+   ============================================= */
+@media screen and (max-width: 900px) {
+  .nav-links { display: none; }
+  .nav-links.active { display: flex; }
+  .menu-toggle { display: block; }
+
+  .puntos-cards {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .puntos-card { flex: 1 1 auto; }
+
+  .noticias-cards {
+    grid-template-columns: 1fr;
   }
 }
 
-function registrarParticipacionHoy(nombre, curso, division, equipo) {
-  try {
-    const data = JSON.parse(localStorage.getItem(PARTICIPACION_KEY) || "{}");
-    data[getAlumnoKey(nombre, curso, division)] = { equipo, fecha: getTodayKey() };
-    localStorage.setItem(PARTICIPACION_KEY, JSON.stringify(data));
-  } catch (e) {}
+/* =============================================
+   RESPONSIVE — TABLET MEDIA 768px
+   ============================================= */
+@media screen and (max-width: 768px) {
+  .noticias-cards {
+    grid-template-columns: 1fr;
+  }
 }
 
-// =============================================
-// FEEDBACK VISUAL
-// =============================================
-const feedback = document.getElementById("desafioFeedback");
+/* =============================================
+   RESPONSIVE — MÓVIL 600px
+   ============================================= */
+@media screen and (max-width: 600px) {
+  .glass {
+    padding: 1rem;
+    border-radius: 0.6rem;
+    margin-bottom: 1.5rem;
+  }
 
-function showFeedback(type, msg) {
-  if (!feedback) return;
-  feedback.textContent = msg;
-  feedback.className   = "desafio-feedback " + type;
-  setTimeout(() => {
-    feedback.className   = "desafio-feedback";
-    feedback.textContent = "";
-  }, 7000);
+  .hero-section { height: 65vh; min-height: 280px; }
+
+  .hero-content h1 {
+    font-size: clamp(1.9rem, 9vw, 3.2rem);
+    letter-spacing: 0.08em;
+  }
+
+  .hero-content p { font-size: 0.95rem; }
+
+  form { padding: 0.8rem 0.8rem 1.5rem; }
+
+  input[type="text"],
+  select {
+    font-size: 0.95rem;
+    padding: 0.65rem 0.7rem;
+  }
+
+  .respuestas-group label {
+    flex: 1 1 calc(50% - 0.4rem);
+    font-size: 0.88rem;
+    padding: 0.5rem 0.5rem;
+    min-width: 80px;
+  }
+
+  .btn-primary {
+    max-width: 100%;
+    font-size: 1rem;
+    padding: 0.85rem 1rem;
+  }
+
+  .calendario-list li {
+    padding: 0.75rem 0.9rem;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+  }
+
+  .cal-date-badge {
+    min-width: 46px;
+    width: 46px;
+    height: 46px;
+  }
+
+  .cal-day { font-size: 1.1rem; }
+  .cal-event-name { font-size: 0.85rem; }
+
+  .cal-badge-tag {
+    font-size: 0.65rem;
+    padding: 0.15rem 0.5rem;
+  }
+
+  .noticias-cards { grid-template-columns: 1fr; }
+  .noticia-card { padding: 1.25rem; }
+
+  .valor-name { font-size: 1.8rem; }
+
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+  }
+
+  .footer-icons a { margin: 0 0.5rem; }
 }
 
-// =============================================
-// VALIDACIÓN DE FORMULARIO
-// =============================================
-function validateForm(nombre, curso, division, equipo, respuesta) {
-  if (!nombre)    return { ok: false, msg: "Ingresá tu nombre." };
-  if (!curso)     return { ok: false, msg: "Seleccioná tu año." };
-  if (!division)  return { ok: false, msg: "Seleccioná tu división." };
-  if (!equipo)    return { ok: false, msg: "La división seleccionada no tiene equipo asignado." };
-  if (!respuesta) return { ok: false, msg: "Seleccioná una respuesta." };
-  return { ok: true };
+/* =============================================
+   RESPONSIVE — MÓVIL PEQUEÑO 400px
+   ============================================= */
+@media screen and (max-width: 400px) {
+  .logo { font-size: 0.85rem; letter-spacing: 0.05em; }
+  .hero-content h1 { font-size: 1.9rem; }
+  .puntos-card { padding: 1rem; }
+  .gallery-grid { grid-template-columns: 1fr 1fr; }
+
+  .cal-date-badge {
+    min-width: 42px;
+    width: 42px;
+    height: 42px;
+  }
+
+  .cal-day { font-size: 1rem; }
+  .cal-event-name { font-size: 0.82rem; }
+
+  .cal-badge-tag { display: none; }
 }
-
-// =============================================
-// SUBMIT DEL FORMULARIO
-// =============================================
-desafioForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-
-  const formData  = new FormData(desafioForm);
-  const nombre    = (formData.get("nombre")   || "").trim();
-  const curso     = (formData.get("curso")    || "").trim();
-  const division  = (formData.get("division") || "").trim();
-  const equipo    = (formData.get("equipo")   || "").trim();
-  const respuesta = formData.get("respuesta") || "";
-
-  const val = validateForm(nombre, curso, division, equipo, respuesta);
-  if (!val.ok) {
-    showFeedback("error", val.msg);
-    return;
-  }
-
-  if (alumnoYaParticipoHoy(nombre, curso, division)) {
-    showFeedback("info", "Ya participaste hoy. ¡Volvé mañana!");
-    return;
-  }
-
-  registrarParticipacionHoy(nombre, curso, division, equipo);
-
-  const preguntaHoy = getPreguntaHoy();
-
-  if (respuesta === preguntaHoy.correcta) {
-    showFeedback("success", "¡Respuesta correcta! Gracias por participar en el desafío Janeriano de hoy.");
-  } else {
-    showFeedback("error", "Respuesta incorrecta. Volvé a intentarlo mañana.");
-  }
-
-  desafioForm.reset();
-  equipoInput.value = "";
-  equipoDisplay.textContent = "";
-  equipoDisplay.classList.remove("visible");
-  desafioForm.querySelectorAll("input, select, button").forEach(el => el.disabled = true);
-});
-
-// =============================================
-// INIT
-// =============================================
-document.addEventListener("DOMContentLoaded", () => {
-  updateUI(getPoints());
-  renderDiaJaneriano();
-  renderPregunta();
-});
