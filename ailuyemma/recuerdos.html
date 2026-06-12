@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Recuerdos y Legado</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+background:
+linear-gradient(
+rgba(0,0,0,.75),
+rgba(0,0,0,.88)
+),
+url("recuerdos.jpg");
+
+background-size:cover;
+background-position:center;
+background-attachment:fixed;
+
+color:white;
+overflow-x:hidden;
+}
+
+/* HEADER */
+
+header{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+
+padding:20px 8%;
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+background:rgba(0,0,0,.25);
+backdrop-filter:blur(15px);
+
+z-index:1000;
+}
+
+.logo{
+font-size:2rem;
+font-weight:800;
+}
+
+.logo span{
+color:#D4AF37;
+}
+
+nav a{
+text-decoration:none;
+color:white;
+
+margin-left:25px;
+
+font-weight:500;
+
+transition:.3s;
+}
+
+nav a:hover{
+color:#D4AF37;
+}
+
+/* HERO */
+
+.hero{
+height:100vh;
+
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+
+text-align:center;
+
+padding:0 20px;
+}
+
+.hero h1{
+font-size:5rem;
+font-weight:800;
+
+color:#D4AF37;
+
+text-shadow:
+0 0 25px rgba(212,175,55,.6);
+}
+
+.hero p{
+max-width:850px;
+
+margin-top:25px;
+
+font-size:1.15rem;
+
+line-height:2;
+}
+
+.hero-btn{
+display:inline-block;
+
+margin-top:35px;
+
+padding:15px 35px;
+
+background:#D4AF37;
+color:black;
+
+font-weight:700;
+
+text-decoration:none;
+
+border-radius:50px;
+
+transition:.3s;
+}
+
+.hero-btn:hover{
+transform:translateY(-5px);
+}
+
+/* SECCIONES */
+
+section{
+padding:100px 8%;
+}
+
+.title{
+text-align:center;
+
+font-size:3rem;
+
+margin-bottom:60px;
+
+color:#D4AF37;
+}
+
+/* GALERÍA */
+
+.gallery{
+max-width:1200px;
+
+margin:auto;
+
+display:grid;
+
+grid-template-columns:repeat(3,1fr);
+
+gap:25px;
+}
+
+.photo{
+height:320px;
+
+overflow:hidden;
+
+border-radius:25px;
+
+border:2px solid rgba(212,175,55,.4);
+
+transition:.4s;
+
+box-shadow:
+0 15px 35px rgba(0,0,0,.4);
+}
+
+.photo:hover{
+transform:scale(1.03);
+border-color:#D4AF37;
+}
+
+.photo img{
+width:100%;
+height:100%;
+object-fit:cover;
+display:block;
+}
+
+/* MOMENTOS */
+
+.cards{
+display:grid;
+
+grid-template-columns:repeat(3,1fr);
+
+gap:25px;
+
+max-width:1200px;
+
+margin:auto;
+}
+
+.card{
+background:rgba(255,255,255,.08);
+
+border:1px solid rgba(255,255,255,.15);
+
+backdrop-filter:blur(15px);
+
+padding:35px;
+
+border-radius:25px;
+
+transition:.4s;
+}
+
+.card:hover{
+transform:translateY(-8px);
+}
+
+.card h3{
+color:#D4AF37;
+margin-bottom:15px;
+}
+
+.card p{
+line-height:1.8;
+}
+
+/* LEGADO */
+
+.legado{
+max-width:1100px;
+
+margin:auto;
+
+padding:60px;
+
+background:rgba(255,255,255,.08);
+
+border:1px solid rgba(255,255,255,.15);
+
+backdrop-filter:blur(15px);
+
+border-radius:30px;
+
+text-align:center;
+}
+
+.legado h2{
+color:#D4AF37;
+margin-bottom:20px;
+}
+
+.legado p{
+line-height:2;
+font-size:1.1rem;
+}
+
+/* BOTÓN INICIO */
+
+.home-btn{
+position:fixed;
+
+bottom:25px;
+right:25px;
+
+display:flex;
+align-items:center;
+gap:10px;
+
+padding:14px 22px;
+
+background:#D4AF37;
+
+color:black;
+
+text-decoration:none;
+
+font-weight:700;
+
+border-radius:999px;
+
+box-shadow:
+0 10px 30px rgba(0,0,0,.45);
+
+z-index:99999;
+
+transition:.3s;
+}
+
+.home-btn:hover{
+transform:
+translateY(-4px)
+scale(1.05);
+
+box-shadow:
+0 15px 40px rgba(0,0,0,.6);
+}
+
+/* FOOTER */
+
+footer{
+padding:35px;
+text-align:center;
+background:rgba(0,0,0,.4);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+
+.gallery{
+grid-template-columns:repeat(2,1fr);
+}
+
+.cards{
+grid-template-columns:1fr;
+}
+
+}
+
+@media(max-width:600px){
+
+.hero h1{
+font-size:3rem;
+}
+
+.gallery{
+grid-template-columns:1fr;
+}
+
+nav{
+display:none;
+}
+
+.title{
+font-size:2rem;
+}
+
+.home-btn{
+bottom:15px;
+right:15px;
+padding:12px 18px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+RECUERDOS <span>⭐</span>
+</div>
+
+<nav>
+
+<a href="#galeria">Galería</a>
+<a href="#momentos">Momentos</a>
+<a href="#legado">Legado</a>
+
+</nav>
+
+</header>
+
+<section class="hero">
+
+<h1>RECUERDOS Y LEGADO</h1>
+
+<p>
+Las Jornadas de las Casas dejan experiencias,
+amistades y aprendizajes que permanecen en el tiempo.
+Este espacio reúne algunos de esos momentos especiales.
+</p>
+
+<a href="#galeria" class="hero-btn">
+Ver recuerdos
+</a>
+
+</section>
+
+<section id="galeria">
+
+<h2 class="title">📸 Galería de Recuerdos</h2>
+
+<div class="gallery">
+
+<div class="photo"><img src="foto2.jpg" alt=""></div>
+<div class="photo"><img src="foto3.jpg" alt=""></div>
+<div class="photo"><img src="foto4.jpg" alt=""></div>
+<div class="photo"><img src="foto5.jpg" alt=""></div>
+<div class="photo"><img src="foto6.jpg" alt=""></div>
+<div class="photo"><img src="foto7.jpg" alt=""></div>
+
+</div>
+
+</section>
+
+<section id="momentos">
+
+<h2 class="title">🏆 Momentos Destacados</h2>
+
+<div class="cards">
+
+<div class="card">
+<h3>Competencias</h3>
+<p>Actividades que impulsaron el trabajo en equipo, la creatividad y el esfuerzo.</p>
+</div>
+
+<div class="card">
+<h3>Compañerismo</h3>
+<p>Experiencias compartidas que fortalecieron los vínculos entre estudiantes.</p>
+</div>
+
+<div class="card">
+<h3>Celebraciones</h3>
+<p>Encuentros, premiaciones y recuerdos que quedaron para siempre.</p>
+</div>
+
+</div>
+
+</section>
+
+<section id="legado">
+
+<div class="legado">
+
+<h2>❤️ Legado</h2>
+
+<p>
+Cada fotografía representa valores, experiencias y momentos que forman parte de la historia de las Jornadas. Más allá de los resultados, permanece el crecimiento personal, la amistad y el sentido de comunidad.
+</p>
+
+</div>
+
+</section>
+
+<a href="index.html" class="home-btn">
+🏠 Inicio
+</a>
+
+<footer>
+© Jornada de las Casas | Recuerdos y Legado
+</footer>
+
+</body>
+</html>
