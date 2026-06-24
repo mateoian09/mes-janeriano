@@ -139,10 +139,10 @@ divisionSelect.addEventListener("change", () => {
 // =============================================
 // SISTEMA DE PUNTOS — puntajes oficiales actualizados
 // =============================================
-const POINTS_KEY = "mesJanerianoPuntos_v3";
+const POINTS_KEY = "mesJanerianoPuntos_v4";
 
-// Puntajes oficiales actualizados: Cervera=2200, Talarn=2700, Vall d'Ora=2700
-const PUNTAJES_OFICIALES = { cervera: 2200, talar: 2700, valdora: 2700 };
+// Puntajes oficiales actualizados: Cervera=3600, Talarn=4300, Vall d'Ora=4200
+const PUNTAJES_OFICIALES = { cervera: 3600, talar: 4300, valdora: 4200 };
 
 function getPoints() {
   let pts = null;
